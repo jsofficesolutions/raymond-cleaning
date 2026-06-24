@@ -56,7 +56,7 @@ export default function ServicePage({ params }) {
           <span className="text-accent font-black tracking-widest uppercase text-xs sm:text-sm">
             Professional Exterior Care
           </span>
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-black tracking-tight leading-none text-white">
             Professional {service.title} Essex
           </h1>
           <p className="text-lg sm:text-xl text-gray-200 max-w-3xl mx-auto font-light leading-relaxed">

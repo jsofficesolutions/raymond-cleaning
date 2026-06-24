@@ -58,7 +58,7 @@ export default function Schedule() {
           <span className="bg-accent/20 text-accent font-extrabold px-4 py-1.5 rounded-full text-xs uppercase tracking-widest border border-accent/30">
             Subscribe & Save 15%
           </span>
-          <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight">
+          <h1 className="text-4xl md:text-5xl font-black tracking-tight leading-none">
             Rinse & Repeat Maintenance
           </h1>
           <p className="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto font-light leading-relaxed">
