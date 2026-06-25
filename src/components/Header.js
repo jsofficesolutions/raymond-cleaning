@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { services } from '@/data/services';
 
 export default function Header() {
@@ -15,17 +16,18 @@ export default function Header() {
 
       {/* Tier 1: Branding & Unified Capsule Phone CTA */}
       <div className="w-full bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-24">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between py-6">
           
           {/* Left: Branding Block */}
           <div className="flex-shrink-0">
-            <Link href="/" className="flex flex-col group">
-              <span className="text-2xl sm:text-3xl font-black text-primary tracking-tight leading-none">
-                RAYMOND
-              </span>
-              <span className="text-xs font-bold tracking-widest text-accent uppercase leading-none mt-1.5">
-                Cleaning Services
-              </span>
+            <Link href="/" className="flex items-center group h-12 sm:h-16 relative w-48 sm:w-56">
+              <Image 
+                src="/images/logo.png" 
+                alt="Raymond Cleaning Services"
+                fill
+                className="object-contain object-left"
+                priority
+              />
             </Link>
           </div>
 
@@ -56,7 +58,7 @@ export default function Header() {
       {/* Tier 2: High-Density Service Navigation Lane (Horizontal Scrollable) */}
       <div className="w-full bg-white">
         <div 
-          className="max-w-7xl mx-auto overflow-x-auto no-scrollbar py-4 px-4 scroll-smooth"
+          className="max-w-7xl mx-auto overflow-x-auto no-scrollbar py-6 px-4 scroll-smooth"
           style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
         >
           <div className="flex flex-nowrap items-center justify-start md:justify-center gap-6 sm:gap-10 min-w-max">
@@ -64,7 +66,7 @@ export default function Header() {
               <Link
                 key={service.id}
                 href={`/${service.slug}`}
-                className="whitespace-nowrap font-semibold text-[11px] sm:text-xs text-slate-800 hover:text-primary tracking-wider uppercase transition-all duration-300 py-2 px-1"
+                className="whitespace-nowrap font-semibold text-[15px] sm:text-base text-slate-900 hover:text-primary tracking-wider uppercase transition-all duration-300 py-2 px-1"
               >
                 {service.title.toUpperCase()}
               </Link>
@@ -74,7 +76,7 @@ export default function Header() {
       </div>
 
       {/* Tier 3: Stark, Solid Trust Anchor Ribbon */}
-      <div className="w-full bg-slate-900 py-3 px-4 shadow-sm border-t border-slate-800">
+      <div className="w-full bg-slate-900 py-4 px-4 shadow-sm border-t border-slate-800">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-around gap-3 text-[10px] font-extrabold tracking-[0.15em] text-center uppercase">
           
           <div className="flex items-center gap-2">

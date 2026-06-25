@@ -45,21 +45,21 @@ export default function Home() {
             {/* Left Column: Value Proposition & Inline Conversion Widget */}
             <div className="lg:col-span-7 space-y-8 text-left">
               
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-black tracking-tight text-white leading-none">
-                Exterior Cleaning <br className="hidden sm:inline" />
-                Services Essex
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight leading-none">
+                <span className="text-white">Exterior Cleaning</span> <br className="hidden sm:inline" />
+                <span className="text-accent">Services Essex</span>
               </h1>
               <div className="w-16 h-0.5 bg-red-600 mt-4"></div>
 
-              <p className="text-lg md:text-xl text-white leading-relaxed max-w-2xl font-semibold mt-6">
+              <p className="text-lg md:text-xl text-gray-100 leading-snug max-w-2xl font-semibold mt-6">
                 Professional, fully insured exterior cleaning solutions tailored for homes and businesses across Essex. We restore your property's shine and protect it from structural damage with specialized equipment.
               </p>
 
               {/* Pimlico-Style Inline Horizontal Conversion Widget Bar */}
-              <div className="bg-white rounded-sm shadow-xl p-2.5 flex flex-col lg:flex-row items-stretch lg:items-center gap-2.5 max-w-3xl w-full border border-white/10">
+              <div className="bg-white rounded-sm shadow-lg p-2.5 flex flex-col lg:flex-row items-stretch lg:items-center gap-2.5 max-w-3xl w-full border border-white/10">
                 
                 {/* Dropdown Selector */}
-                <div className="flex items-center gap-2.5 px-4 py-3 flex-grow w-full lg:w-auto relative bg-slate-100 rounded-sm">
+                <div className="flex items-center gap-2.5 px-4 py-3 flex-grow w-full lg:w-auto relative bg-slate-50 rounded-sm">
                   <svg className="w-5 h-5 text-slate-500 flex-shrink-0" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                   </svg>
@@ -69,7 +69,7 @@ export default function Home() {
                       onChange={(e) => setService(e.target.value)}
                       className="w-full bg-transparent focus:outline-none text-slate-900 font-bold text-sm cursor-pointer appearance-none pr-8 py-1.5"
                     >
-                      <option value="" className="text-slate-900">I need help with...</option>
+                      <option value="" className="text-slate-900 font-bold">I need help with...</option>
                       {services.map((s) => (
                         <option key={s.id} value={s.title} className="text-slate-900">
                           {s.title}
@@ -85,7 +85,7 @@ export default function Home() {
                 </div>
 
                 {/* Postcode Input */}
-                <div className="flex items-center gap-2.5 px-4 py-3 flex-grow w-full lg:w-auto bg-slate-100 rounded-sm">
+                <div className="flex items-center gap-2.5 px-4 py-3 flex-grow w-full lg:w-auto bg-slate-50 rounded-sm">
                   <svg className="w-5 h-5 text-slate-500 flex-shrink-0" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                     <path strokeLinecap="round" strokeLinejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
@@ -95,7 +95,7 @@ export default function Home() {
                     placeholder="Enter postcode"
                     value={postcode}
                     onChange={(e) => setPostcode(e.target.value.toUpperCase())}
-                    className="w-full bg-transparent focus:outline-none text-slate-900 font-bold text-sm uppercase placeholder:normal-case placeholder-slate-500 py-1.5"
+                    className="w-full bg-transparent focus:outline-none text-slate-900 font-bold text-sm uppercase placeholder:normal-case placeholder-slate-800 py-1.5"
                   />
                 </div>
 
@@ -103,7 +103,7 @@ export default function Home() {
                 <div className="w-full lg:w-auto flex-shrink-0">
                   <button
                     onClick={() => setIsModalOpen(true)}
-                    className="w-full bg-red-600 hover:bg-red-700 text-white font-black px-8 py-3.5 rounded-sm transition-all duration-200 text-sm uppercase tracking-widest cursor-pointer"
+                    className="w-full flex items-center justify-center bg-red-600 hover:bg-red-700 text-white font-extrabold px-8 py-3.5 rounded-sm transition-all duration-200 text-sm uppercase tracking-wider cursor-pointer"
                   >
                     BOOK NOW
                   </button>
@@ -112,7 +112,7 @@ export default function Home() {
               </div>
 
               {/* Google Reviews Badge Framework */}
-              <div className="flex items-center gap-3 mt-4">
+              <div className="flex items-center gap-3 mt-8">
                 <div className="flex items-center gap-1.5 bg-white/95 px-2.5 py-1 rounded-sm shadow-sm">
                   <svg className="w-3.5 h-3.5 flex-shrink-0" viewBox="0 0 24 24">
                     <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" />
@@ -133,34 +133,6 @@ export default function Home() {
                   4.9 / 5.0 Rating <span className="text-blue-200 font-normal text-xs ml-1">(based on 248 Google reviews)</span>
                 </span>
               </div>
-
-              {/* USP Checklist horizontal stack/grid */}
-              <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-3 font-bold text-blue-50 text-xs sm:text-sm pt-6 border-t border-white/10 max-w-2xl">
-                <li className="flex items-center gap-3">
-                  <span className="flex items-center justify-center w-5.5 h-5.5 rounded-full bg-accent text-primary flex-shrink-0 shadow-sm">
-                    <svg className="w-3.5 h-3.5 fill-current font-bold" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                    </svg>
-                  </span>
-                  <span>Fully Insured up to £5 Million</span>
-                </li>
-                <li className="flex items-center gap-3">
-                  <span className="flex items-center justify-center w-5.5 h-5.5 rounded-full bg-accent text-primary flex-shrink-0 shadow-sm">
-                    <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                    </svg>
-                  </span>
-                  <span>No-Streak Pure Water fed Pole Technology</span>
-                </li>
-                <li className="flex items-center gap-3">
-                  <span className="flex items-center justify-center w-5.5 h-5.5 rounded-full bg-accent text-primary flex-shrink-0 shadow-sm">
-                    <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                    </svg>
-                  </span>
-                  <span>Reliable & Screened Staff (Aaron's Guarantee)</span>
-                </li>
-              </ul>
             </div>
 
             {/* Right Column: Empty to showcase backdrop imagery */}

@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { services } from '@/data/services';
 
 export default function Footer() {
@@ -8,13 +9,13 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
           {/* Brand Info */}
           <div className="space-y-4">
-            <Link href="/" className="flex flex-col">
-              <span className="text-2xl font-black tracking-tight leading-none text-white">
-                RAYMOND
-              </span>
-              <span className="text-xs font-bold tracking-widest text-accent uppercase leading-none mt-1">
-                Cleaning Services
-              </span>
+            <Link href="/" className="flex items-center h-12 sm:h-16 relative w-48 sm:w-56 mb-2">
+              <Image 
+                src="/images/logo.png" 
+                alt="Raymond Cleaning Services"
+                fill
+                className="object-contain object-left"
+              />
             </Link>
             <p className="text-gray-300 text-sm leading-relaxed max-w-xs">
               Essex's premier exterior cleaning specialists. Providing commercial and residential cleaning with pure-water technology and professional eco-friendly soft washes.
