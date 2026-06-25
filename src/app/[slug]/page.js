@@ -6,6 +6,12 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { services } from '@/data/services';
 
+export function generateStaticParams() {
+  return services.map((service) => ({
+    slug: service.slug,
+  }));
+}
+
 const ESSEX_TOWNS = [
   "Chelmsford", "Southend-on-Sea", "Colchester", "Basildon", 
   "Rayleigh", "Brentwood", "Braintree", "Harlow", "Epping", "Saffron Walden"
