@@ -11,8 +11,15 @@ const ESSEX_TOWNS = [
   "Rayleigh", "Brentwood", "Braintree", "Harlow", "Epping", "Saffron Walden"
 ];
 
+// Add this function so Next.js knows which pages to pre-render during 'next build'
+export async function generateStaticParams() {
+  return services.map((service) => ({
+    slug: service.slug,
+  }));
+}
+
 export default function ServicePage({ params }) {
-  // Await page params in Next.js 15 using use()
+  // Await page params in Next.js 15+ using use()
   const { slug } = use(params);
   
   const service = services.find((s) => s.slug === slug);
