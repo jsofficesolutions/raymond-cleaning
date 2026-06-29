@@ -9,7 +9,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
           {/* Brand Info */}
           <div className="space-y-4">
-            <Link href="/" className="flex items-center h-12 sm:h-16 relative w-48 sm:w-56 mb-2">
+            <Link href="/" className="flex items-center h-16 sm:h-24 relative w-56 sm:w-80 mb-2">
               <Image 
                 src="/images/logo.png" 
                 alt="Raymond Cleaning Services"
