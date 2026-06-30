@@ -13,7 +13,7 @@ export default function Header() {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 20) {
+      if (window.scrollY > 150) {
         setIsScrolled(true);
       } else {
         setIsScrolled(false);
