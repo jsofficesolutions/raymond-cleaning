@@ -6,7 +6,7 @@ export const services = [
     desc: "Commercial and Residential window cleaning covering the South East.",
     longDesc: "At Raymond Cleaning Services, we specialize in high-quality window cleaning for both residential and commercial properties throughout Essex. Using the latest pure-water-fed pole systems, we clean not just the glass, but also the sills and frames for a complete, long-lasting finish. No ladders are required, keeping your property safe and private while reaching heights of up to 50 feet.",
     image: "/images/window-cleaning.png",
-    iconSvgPath: "M4 4h16v16H4V4z M12 4v16 M4 12h16", // Simple clean window grid
+    iconInnerHtml: '<path d="M12 3v18"/><path d="M3 12h18"/><rect x="3" y="3" width="18" height="18" rx="2"/>', // Lucide grid-2x2
     benefits: [
       "100% pure water filtration leaves windows streak-free without chemical residue",
       "We clean glass, frames, sills, and external doors with every visit",
@@ -26,7 +26,7 @@ export const services = [
     desc: "Routine maintenance to avoid overflowing gutters and unwanted vermin.",
     longDesc: "Blocked gutters can lead to serious water damage, damp issues, and costly roof repairs. Raymond Cleaning Services provides safe, high-reach gutter clearance services. Using powerful industrial gutter vacuums with carbon-fiber poles and onboard cameras, we clear out all moss, leaves, silt, and debris safely from the ground and show you the clean result.",
     image: "/images/gutter-clearance.png",
-    iconSvgPath: "M4 8v6a8 8 0 0016 0V8 M12 16V3 M9 6l3-3 3 3", // Gutter cross-section with upward extraction arrow
+    iconInnerHtml: '<path d="M4 8v6a8 8 0 0 0 16 0V8"/><path d="M12 2v10"/><path d="m9 9 3 3 3-3"/>', // Custom gutter & downpipe suction arrow
     benefits: [
       "Prevents structural dampness and water ingress around your roofline",
       "Camera inspections ensure every pocket of debris is fully removed",
@@ -46,7 +46,7 @@ export const services = [
     desc: "High-powered cleaning for driveways, patios, and tough exterior surfaces.",
     longDesc: "Over time, driveways, block paving, and patios accumulate weeds, moss, algae, and grime, becoming unsightly and dangerously slippery. Our high-pressure washing system removes decades of dirt and organic growth, restoring the natural beauty of your stone, concrete, or brickwork. We also offer re-sanding and sealing to protect your surfaces for years to come.",
     image: "/images/pressure-washing.png",
-    iconSvgPath: "M3 3l5 5 M5 3l3 2 M3 5l2 3 M10 10l10 10 M13 9l8 8 M9 13l8 8", // Pressure nozzle spraying stream
+    iconInnerHtml: '<path d="M2 12q2.5 2 5 0t5 0 5 0 5 0"/><path d="M2 19q2.5 2 5 0t5 0 5 0 5 0"/><path d="M2 5q2.5 2 5 0t5 0 5 0 5 0"/>', // Lucide waves-horizontal
     benefits: [
       "Restores slippery, dangerous paths into safe, slip-resistant walkways",
       "Deep cleans block paving, patio slabs, concrete, and brick driveways",
@@ -66,7 +66,7 @@ export const services = [
     desc: "Gentle, chemical-assisted cleaning to remove organic growth without damage.",
     longDesc: "High pressure can easily damage delicate render, roof tiles, cladding, and timber. Our soft washing service utilizes low-pressure sprayers combined with specialized, biodegradable sanitizing solutions. This method targets, kills, and dissolves algae, lichen, mold, and mildew at their roots, keeping surfaces cleaner for up to 3-4 times longer than pressure washing alone.",
     image: "/images/soft-washing.png",
-    iconSvgPath: "M6 12a3 3 0 106 0 3 3 0 10-6 0 M14 8a2 2 0 104 0 2 2 0 10-4 0 M13 16a2.5 2.5 0 105 0 2.5 2.5 0 10-5 0", // Gentle bubbles
+    iconInnerHtml: '<path d="M7.001 15.085A1.5 1.5 0 0 1 9 16.5"/><circle cx="18.5" cy="8.5" r="3.5"/><circle cx="7.5" cy="16.5" r="5.5"/><circle cx="7.5" cy="4.5" r="2.5"/>', // Lucide bubbles
     benefits: [
       "Cleans delicate exterior surfaces (K-Rend, render, cladding) without damage",
       "Kills the spores of black mold, red algae, and lichen at their root",
@@ -86,7 +86,7 @@ export const services = [
     desc: "Restore the roofline of your property to a brilliant, clean white.",
     longDesc: "Your home's roofline is highly visible and gathers gray grime, green algae, and dirt over time. Raymond Cleaning Services offers complete fascia, soffit, and bargeboard cleaning. Utilizing specialized cleaning detergents and pure water poles, we wash away organic growth and traffic film, returning your uPVC rooflines to their original, bright-white condition.",
     image: "/images/fascia-soffits.png",
-    iconSvgPath: "M2 12l10-8 10 8 M4 12v7a1 1 0 001 1h14a1 1 0 001-1v-7 M4 12h16", // Roof eave line highlighted
+    iconInnerHtml: '<path d="M2 12l10-10 10 10"/><path d="M20 12v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-8"/>', // Lucide house/roof
     benefits: [
       "Brightens greyed or algae-ridden uPVC trim, restoring a clean white look",
       "Washes gutter exteriors, downpipes, bargeboards, and soffits",

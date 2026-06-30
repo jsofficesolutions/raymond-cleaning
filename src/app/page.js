@@ -230,10 +230,17 @@ export default function Home() {
                       {/* Text block */}
                       <div className={`lg:col-span-6 space-y-6 ${isEven ? 'lg:order-2' : 'lg:order-1'}`}>
                         <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-accent/20 text-accent">
-                          {service.iconSvgPath ? (
-                            <svg className="w-7 h-7" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" d={service.iconSvgPath} />
-                            </svg>
+                          {service.iconInnerHtml ? (
+                            <svg 
+                              className="w-7 h-7" 
+                              fill="none" 
+                              stroke="currentColor" 
+                              strokeWidth="2.5" 
+                              viewBox="0 0 24 24"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              dangerouslySetInnerHTML={{ __html: service.iconInnerHtml }}
+                            />
                           ) : (
                             <svg className="w-7 h-7" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                               <path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
