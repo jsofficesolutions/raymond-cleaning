@@ -89,16 +89,16 @@ export default function Header() {
             <div className="flex-1 flex justify-start">
               <button
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
-                className="flex flex-col items-center justify-center w-11 h-11 border-[3px] border-primary text-primary hover:bg-primary hover:text-white transition-all duration-200 focus:outline-none cursor-pointer"
+                className="flex flex-col items-center justify-center w-11 h-11 border-2 border-primary text-primary hover:bg-primary hover:text-white transition-all duration-200 focus:outline-none cursor-pointer"
                 aria-label="Toggle menu"
               >
                 {isMenuOpen ? (
-                  <svg className="w-6 h-6 stroke-current stroke-[3]" viewBox="0 0 24 24" fill="none">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                  <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M18 6L6 18M6 6l12 12" />
                   </svg>
                 ) : (
-                  <svg className="w-6 h-6 stroke-current stroke-[3]" viewBox="0 0 24 24" fill="none">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+                  <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M4 5h16M4 12h16M4 19h16" />
                   </svg>
                 )}
               </button>
