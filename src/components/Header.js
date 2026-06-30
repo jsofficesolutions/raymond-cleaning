@@ -24,7 +24,9 @@ export default function Header() {
   }, []);
 
   return (
-    <header className="sticky top-0 z-50 bg-white border-b border-gray-100 shadow-sm w-full flex flex-col">
+    <header className={`sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b transition-all duration-300 w-full flex flex-col ${
+      isScrolled ? 'shadow-md border-slate-200' : 'shadow-sm border-gray-100'
+    }`}>
       {/* Webkit Scrollbar CSS Injection for Tier 2 horizontal list */}
       <style dangerouslySetInnerHTML={{__html: `
         .no-scrollbar::-webkit-scrollbar {
@@ -34,7 +36,7 @@ export default function Header() {
 
       {/* Tier 1: Branding & Unified Capsule Phone/Hamburger CTA */}
       <div className="w-full bg-white transition-all duration-300">
-        <div className={`max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 transition-all duration-300 ${isScrolled ? 'py-2 sm:py-3' : 'py-4 sm:py-6'}`}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 sm:py-4">
           
           {/* Desktop Layout (md+) */}
           <div className="hidden md:flex items-center justify-between gap-4">
@@ -42,11 +44,7 @@ export default function Header() {
             <div className="flex-shrink-0">
               <Link 
                 href="/" 
-                className={`flex items-center relative transition-all duration-300 ${
-                  isScrolled 
-                    ? 'h-20 w-[240px] md:h-24 md:w-[280px]' 
-                    : 'h-28 w-[320px] sm:h-32 sm:w-[360px] md:h-40 md:w-[480px]'
-                }`}
+                className="flex items-center relative transition-all duration-300 h-20 w-[240px] md:h-24 md:w-[280px]"
               >
                 <Image 
                   src="/images/logo.png" 
@@ -108,9 +106,7 @@ export default function Header() {
             <div className="flex-shrink-0 flex justify-center">
               <Link 
                 href="/" 
-                className={`flex items-center relative transition-all duration-300 ${
-                  isScrolled ? 'h-20 w-48' : 'h-24 w-56'
-                }`}
+                className="flex items-center relative transition-all duration-300 h-20 w-48"
               >
                 <Image 
                   src="/images/logo.png" 
