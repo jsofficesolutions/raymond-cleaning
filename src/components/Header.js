@@ -172,73 +172,6 @@ export default function Header() {
           </div>
         </div>
 
-        {/* Slide-out Navigation Drawer for Mobile/Tablet */}
-        <div className={`fixed inset-0 z-50 transition-all duration-300 md:hidden ${isMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}>
-          {/* Backdrop */}
-          <div 
-            className="absolute inset-0 bg-black/60 backdrop-blur-xs transition-opacity duration-300"
-            onClick={() => setIsMenuOpen(false)}
-          />
-          
-          {/* Drawer Content */}
-          <div className={`absolute top-0 left-0 w-80 max-w-[85vw] h-full bg-white shadow-2xl p-6 flex flex-col justify-between transition-transform duration-300 ease-out ${isMenuOpen ? 'translate-x-0' : '-translate-x-full'}`}>
-            <div>
-              <div className="flex items-center justify-between pb-5 border-b border-slate-100">
-                <span className="font-black text-primary uppercase tracking-wider text-sm">Services Menu</span>
-                <button 
-                  onClick={() => setIsMenuOpen(false)} 
-                  className="text-slate-500 hover:text-slate-950 p-1 text-2xl font-bold cursor-pointer transition-colors"
-                  aria-label="Close menu"
-                >
-                  ✕
-                </button>
-              </div>
-              
-              <nav className="mt-8 flex flex-col gap-2">
-                <Link
-                  href="/"
-                  onClick={() => setIsMenuOpen(false)}
-                  className={`font-black text-base uppercase tracking-wider py-3.5 px-2 border-b border-slate-50 flex items-center justify-between transition-colors ${
-                    pathname === '/' ? 'text-primary bg-slate-50' : 'text-slate-800 hover:text-primary'
-                  }`}
-                >
-                  <span>Home</span>
-                  <span className="text-accent">→</span>
-                </Link>
-                
-                <div className="mt-4 pt-2 border-t border-slate-100">
-                  <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest block mb-2 px-2">Our Cleaning Services</span>
-                  {services.map((service) => {
-                    const isActive = pathname === `/${service.slug}`;
-                    return (
-                      <Link
-                        key={service.id}
-                        href={`/${service.slug}`}
-                        onClick={() => setIsMenuOpen(false)}
-                        className={`font-black text-sm uppercase tracking-wider py-3 px-2 border-b border-slate-50/50 flex items-center justify-between transition-colors ${
-                          isActive ? 'text-primary bg-slate-50' : 'text-slate-700 hover:text-primary'
-                        }`}
-                      >
-                        <span>{service.title}</span>
-                        <span className="text-accent">→</span>
-                      </Link>
-                    );
-                  })}
-                </div>
-              </nav>
-            </div>
-
-            <div className="space-y-4 pt-6 border-t border-slate-100">
-              <a 
-                href="tel:07123456781" 
-                className="w-full bg-accent hover:bg-accent-hover text-primary text-center font-black py-3.5 block shadow transition-colors"
-              >
-                Call Us: 07123 456781
-              </a>
-            </div>
-          </div>
-        </div>
-
         {/* Tier 3: Stark, Solid Trust Anchor Ribbon */}
         <div className={`hidden md:block w-full bg-accent shadow-inner transition-all duration-300 overflow-hidden ${
           isScrolled ? 'max-h-0 py-0 opacity-0' : 'max-h-14 py-3.5 opacity-100'
@@ -279,6 +212,73 @@ export default function Header() {
           </div>
         </div>
       </header>
+
+      {/* Slide-out Navigation Drawer for Mobile/Tablet */}
+      <div className={`fixed inset-0 z-[100] transition-all duration-300 md:hidden ${isMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}>
+        {/* Backdrop */}
+        <div 
+          className="absolute inset-0 bg-black/60 backdrop-blur-xs transition-opacity duration-300"
+          onClick={() => setIsMenuOpen(false)}
+        />
+        
+        {/* Drawer Content */}
+        <div className={`absolute top-0 left-0 w-80 max-w-[85vw] h-full bg-white shadow-2xl p-6 flex flex-col justify-between transition-transform duration-300 ease-out ${isMenuOpen ? 'translate-x-0' : '-translate-x-full'}`}>
+          <div>
+            <div className="flex items-center justify-between pb-5 border-b border-slate-100">
+              <span className="font-black text-primary uppercase tracking-wider text-sm">Services Menu</span>
+              <button 
+                onClick={() => setIsMenuOpen(false)} 
+                className="text-slate-500 hover:text-slate-950 p-1 text-2xl font-bold cursor-pointer transition-colors"
+                aria-label="Close menu"
+              >
+                ✕
+              </button>
+            </div>
+            
+            <nav className="mt-8 flex flex-col gap-2">
+              <Link
+                href="/"
+                onClick={() => setIsMenuOpen(false)}
+                className={`font-black text-base uppercase tracking-wider py-3.5 px-2 border-b border-slate-50 flex items-center justify-between transition-colors ${
+                  pathname === '/' ? 'text-primary bg-slate-50' : 'text-slate-800 hover:text-primary'
+                }`}
+              >
+                <span>Home</span>
+                <span className="text-accent">→</span>
+              </Link>
+              
+              <div className="mt-4 pt-2 border-t border-slate-100">
+                <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest block mb-2 px-2">Our Cleaning Services</span>
+                {services.map((service) => {
+                  const isActive = pathname === `/${service.slug}`;
+                  return (
+                    <Link
+                      key={service.id}
+                      href={`/${service.slug}`}
+                      onClick={() => setIsMenuOpen(false)}
+                      className={`font-black text-sm uppercase tracking-wider py-3 px-2 border-b border-slate-50/50 flex items-center justify-between transition-colors ${
+                        isActive ? 'text-primary bg-slate-50' : 'text-slate-700 hover:text-primary'
+                      }`}
+                    >
+                      <span>{service.title}</span>
+                      <span className="text-accent">→</span>
+                    </Link>
+                  );
+                })}
+              </div>
+            </nav>
+          </div>
+
+          <div className="space-y-4 pt-6 border-t border-slate-100">
+            <a 
+              href="tel:07123456781" 
+              className="w-full bg-accent hover:bg-accent-hover text-primary text-center font-black py-3.5 block shadow transition-colors"
+            >
+              Call Us: 07123 456781
+            </a>
+          </div>
+        </div>
+      </div>
 
       {/* Non-collapsing spacer to prevent layout shifts when the header contracts */}
       <div className="h-[96px] md:h-[254px] w-full flex-shrink-0" />
