@@ -40,23 +40,23 @@ export default function BookingModal({ isOpen, onClose, initialService, initialP
         {/* Absolute Exit button */}
         <button
           onClick={onClose}
-          className="absolute top-5 right-5 text-white hover:text-red-200 text-2xl font-bold cursor-pointer z-10 transition-colors"
+          className="absolute top-3 right-3 sm:top-5 sm:right-5 text-white hover:text-red-200 text-xl sm:text-2xl font-bold cursor-pointer z-10 transition-colors"
           aria-label="Close booking modal"
         >
           ✕
         </button>
 
         {/* 1. Red Direct-Call Header Block */}
-        <div className="bg-red-600 text-white text-center py-8 px-6 relative">
-          <h3 className="text-2xl sm:text-3xl font-extrabold uppercase tracking-wide">
+        <div className="bg-red-600 text-white text-center py-6 sm:py-8 px-4 sm:px-6 relative">
+          <h3 className="text-xl sm:text-2xl md:text-3xl font-extrabold uppercase tracking-wide">
             Make a Booking
           </h3>
-          <p className="text-sm font-bold text-red-100 mt-2">
+          <p className="text-xs sm:text-sm font-bold text-red-100 mt-2">
             Simply call and we'll book you in now:
           </p>
           <a
             href="tel:07123456781"
-            className="block text-3xl sm:text-4xl font-black mt-2 tracking-tight hover:scale-105 transition-transform duration-200"
+            className="block text-2xl sm:text-3xl md:text-4xl font-black mt-2 tracking-tight hover:scale-105 transition-transform duration-200"
           >
             07123 456781
           </a>

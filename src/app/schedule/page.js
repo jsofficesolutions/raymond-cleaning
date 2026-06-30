@@ -9,6 +9,75 @@ export default function Schedule() {
   const [isDragging, setIsDragging] = useState(false);
   const containerRef = useRef(null);
 
+  // Custom Schedule Builder State
+  const [propertyType, setPropertyType] = useState('detached');
+  const [environment, setEnvironment] = useState('standard');
+  const [selectedServices, setSelectedServices] = useState(['window', 'gutter']);
+  const [plannerSubmitted, setPlannerSubmitted] = useState(false);
+  const [plannerName, setPlannerName] = useState('');
+  const [plannerPhone, setPlannerPhone] = useState('');
+
+  const toggleService = (serviceId) => {
+    if (selectedServices.includes(serviceId)) {
+      setSelectedServices(selectedServices.filter(s => s !== serviceId));
+    } else {
+      setSelectedServices([...selectedServices, serviceId]);
+    }
+  };
+
+  const getRecommendedSchedule = () => {
+    const recommendation = [];
+    
+    if (selectedServices.includes('window')) {
+      const freq = environment === 'coastal' ? 'Every 4 weeks' : 'Every 8 weeks';
+      recommendation.push({
+        name: 'Window Cleaning',
+        freq,
+        months: 'Jan, Mar, May, Jul, Sep, Nov',
+        reason: environment === 'coastal' ? 'Salt spray accumulation' : 'Standard atmospheric grime'
+      });
+    }
+
+    if (selectedServices.includes('gutter')) {
+      const freq = environment === 'trees' ? 'Twice a year (Spring & Autumn)' : 'Once a year (Late Autumn)';
+      recommendation.push({
+        name: 'Gutter Clearance',
+        freq,
+        months: environment === 'trees' ? 'April, November' : 'November',
+        reason: environment === 'trees' ? 'Heavy leaf fall and pine needles' : 'Standard seasonal buildup'
+      });
+    }
+
+    if (selectedServices.includes('pressure')) {
+      recommendation.push({
+        name: 'Driveway & Patio Pressure Wash',
+        freq: 'Every 12-24 months',
+        months: 'April / May',
+        reason: 'Restoring winter slip hazards and biological growths'
+      });
+    }
+
+    if (selectedServices.includes('soft')) {
+      recommendation.push({
+        name: 'Exterior Soft Washing (Render/Cladding)',
+        freq: 'Every 2-3 years',
+        months: 'Spring / Summer',
+        reason: 'Low pressure mold and algae treatment'
+      });
+    }
+
+    if (selectedServices.includes('fascia')) {
+      recommendation.push({
+        name: 'Fascia & Soffit Washing',
+        freq: 'Every 12 months',
+        months: 'June / July',
+        reason: 'Restores brilliant white roofline aesthetic'
+      });
+    }
+
+    return recommendation;
+  };
+
   const handleMove = (clientX) => {
     if (!containerRef.current) return;
     const rect = containerRef.current.getBoundingClientRect();
@@ -130,6 +199,216 @@ export default function Schedule() {
               <p className="text-gray-500 text-sm leading-relaxed">
                 Standing water in gutters cracks brickwork, and algae compromises render. Regular maintenance eliminates damp ingress, save thousands in structural repairs down the line.
               </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Interactive Custom Schedule Planner */}
+      <section className="bg-white py-16 border-t border-gray-150 relative z-25">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center max-w-3xl mx-auto mb-12">
+            <span className="text-accent font-black tracking-wider uppercase text-xs sm:text-sm">
+              Custom Schedule Planner
+            </span>
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-primary mt-2">
+              Build Your Custom Cleaning Cycle
+            </h2>
+            <p className="text-gray-500 mt-3 text-base sm:text-lg">
+              Select your building type and environmental factors below. Our interactive tool will generate a recommended year-round maintenance plan tailored for your property.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+            {/* Left Column: Input Options */}
+            <div className="lg:col-span-5 bg-off-white rounded-2xl p-6 sm:p-8 border border-gray-150 space-y-8">
+              {/* Property Type Selection */}
+              <div>
+                <label className="block text-xs font-black uppercase tracking-wider text-slate-800 mb-3">
+                  1. Property Type
+                </label>
+                <div className="grid grid-cols-2 gap-3">
+                  {[
+                    { id: 'detached', label: 'Detached' },
+                    { id: 'semi', label: 'Semi-Detached' },
+                    { id: 'terraced', label: 'Terraced' },
+                    { id: 'bungalow', label: 'Bungalow' },
+                    { id: 'commercial', label: 'Commercial' }
+                  ].map((type) => (
+                    <button
+                      key={type.id}
+                      onClick={() => setPropertyType(type.id)}
+                      className={`px-4 py-3 text-xs font-black uppercase rounded-lg border text-center transition-all duration-200 cursor-pointer ${
+                        propertyType === type.id
+                          ? 'bg-primary border-primary text-white shadow-md'
+                          : 'bg-white border-gray-200 text-slate-800 hover:border-primary/50'
+                      }`}
+                    >
+                      {type.label}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Surrounding Environment */}
+              <div>
+                <label className="block text-xs font-black uppercase tracking-wider text-slate-800 mb-3">
+                  2. Environment & Location
+                </label>
+                <div className="space-y-3">
+                  {[
+                    { id: 'standard', label: 'Standard Suburban / Town', desc: 'Average dirt, dust, and organic build-up.' },
+                    { id: 'trees', label: 'Under Heavy Tree Canopy', desc: 'Requires frequent gutter clearances due to leaves/needles.' },
+                    { id: 'coastal', label: 'Coastal / Windy Estuary', desc: 'Frequent window washing needed due to salt/sand sprays.' }
+                  ].map((env) => (
+                    <button
+                      key={env.id}
+                      onClick={() => setEnvironment(env.id)}
+                      className={`w-full text-left p-4 rounded-lg border transition-all duration-200 cursor-pointer ${
+                        environment === env.id
+                          ? 'bg-white border-accent ring-2 ring-accent/30 shadow-sm'
+                          : 'bg-white border-gray-200 hover:border-gray-300'
+                      }`}
+                    >
+                      <div className="flex items-center justify-between">
+                        <span className="font-bold text-sm text-primary">{env.label}</span>
+                        <span className={`w-4 h-4 rounded-full border flex items-center justify-center ${environment === env.id ? 'border-accent bg-accent' : 'border-gray-350'}`}>
+                          {environment === env.id && <span className="w-1.5 h-1.5 bg-white rounded-full"></span>}
+                        </span>
+                      </div>
+                      <p className="text-xs text-gray-500 mt-1">{env.desc}</p>
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Desired Services Checklist */}
+              <div>
+                <label className="block text-xs font-black uppercase tracking-wider text-slate-800 mb-3">
+                  3. Select Services to Include
+                </label>
+                <div className="space-y-2.5">
+                  {[
+                    { id: 'window', label: 'Window Cleaning' },
+                    { id: 'gutter', label: 'Gutter Clearance' },
+                    { id: 'pressure', label: 'Pressure Washing (Driveways/Patios)' },
+                    { id: 'soft', label: 'Soft Washing (Render/Brick)' },
+                    { id: 'fascia', label: 'Fascia & Soffits Clean' }
+                  ].map((service) => {
+                    const isChecked = selectedServices.includes(service.id);
+                    return (
+                      <button
+                        key={service.id}
+                        onClick={() => toggleService(service.id)}
+                        className={`w-full flex items-center justify-between p-3.5 rounded-lg border text-left transition-all duration-200 cursor-pointer ${
+                          isChecked
+                            ? 'bg-primary/5 border-primary/30 text-primary font-bold shadow-xs'
+                            : 'bg-white border-gray-200 text-gray-700 hover:border-gray-300'
+                        }`}
+                      >
+                        <span className="text-xs sm:text-sm font-semibold">{service.label}</span>
+                        <div className={`w-5 h-5 rounded border flex items-center justify-center transition-colors ${isChecked ? 'bg-primary border-primary text-white' : 'border-gray-300 bg-white'}`}>
+                          {isChecked && (
+                            <svg className="w-3.5 h-3.5 fill-none stroke-current stroke-[2.5]" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                            </svg>
+                          )}
+                        </div>
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+            </div>
+
+            {/* Right Column: Custom Recommended Schedule Output */}
+            <div className="lg:col-span-7 bg-white rounded-2xl border-[3px] border-primary p-6 sm:p-8 shadow-xl relative overflow-hidden flex flex-col justify-between min-h-[500px]">
+              {/* Subscription Accent Ribbon */}
+              <div className="absolute top-0 right-0 bg-accent text-primary font-black text-[10px] sm:text-xs uppercase tracking-widest px-6 py-2 shadow-md transform rotate-0 rounded-bl-xl">
+                15% DISCOUNT SAVINGS LOCKED
+              </div>
+
+              <div>
+                <h3 className="text-xl sm:text-2xl font-black text-primary mb-2 mt-4 lg:mt-0">
+                  Your Recommended Year-Round Plan
+                </h3>
+                <p className="text-gray-500 text-xs sm:text-sm mb-6">
+                  Based on a <span className="font-bold text-slate-800 capitalize">{propertyType} property</span> located in a <span className="font-bold text-slate-800">{environment === 'trees' ? 'wooded' : environment === 'coastal' ? 'coastal' : 'standard'} environment</span>.
+                </p>
+
+                {selectedServices.length === 0 ? (
+                  <div className="bg-slate-50 border border-dashed border-gray-200 rounded-xl p-8 text-center text-gray-500 my-8">
+                    <p className="font-semibold text-sm">Please select at least one service to generate your schedule.</p>
+                  </div>
+                ) : (
+                  <div className="space-y-4 my-6">
+                    {getRecommendedSchedule().map((item, idx) => (
+                      <div key={idx} className="bg-slate-50 rounded-xl p-4 border border-gray-150 flex items-start gap-4 shadow-2xs hover:shadow-xs transition-shadow">
+                        <div className="w-8 h-8 rounded-full bg-accent/25 text-primary flex items-center justify-center font-black text-sm shrink-0">
+                          {idx + 1}
+                        </div>
+                        <div className="space-y-1">
+                          <h4 className="font-extrabold text-sm sm:text-base text-primary uppercase tracking-wide">{item.name}</h4>
+                          <div className="flex flex-wrap gap-2 text-xs">
+                            <span className="bg-primary/10 text-primary font-bold px-2 py-0.5 rounded">
+                              {item.freq}
+                            </span>
+                            <span className="bg-emerald-100 text-emerald-800 font-bold px-2 py-0.5 rounded">
+                              Target Months: {item.months}
+                            </span>
+                          </div>
+                          <p className="text-xs text-gray-500 pt-1 leading-relaxed">
+                            <span className="font-semibold text-slate-700">Rationale: </span>{item.reason}
+                          </p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+
+              {/* Action Form */}
+              <div className="border-t border-gray-150 pt-6 mt-6 space-y-4">
+                <div className="bg-primary/5 p-4 rounded-xl border border-primary/20 text-center">
+                  <span className="text-[10px] font-black uppercase text-accent tracking-widest block mb-1">Aaron's Guarantee</span>
+                  <p className="text-xs font-semibold text-primary">No lock-in contract. Skip, pause, or reschedule anytime with 48 hours notice.</p>
+                </div>
+
+                {plannerSubmitted ? (
+                  <div className="bg-emerald-50 border border-emerald-200 text-emerald-800 p-4 rounded-xl text-center text-sm font-semibold">
+                    ✓ Custom schedule inquiry sent! Aaron will contact you shortly to confirm dates.
+                  </div>
+                ) : (
+                  <div className="flex flex-col sm:flex-row gap-3">
+                    <input
+                      type="text"
+                      placeholder="Your Name"
+                      value={plannerName}
+                      onChange={(e) => setPlannerName(e.target.value)}
+                      className="flex-grow px-4 py-3 rounded-lg border border-gray-200 text-sm focus:outline-none focus:border-primary"
+                    />
+                    <input
+                      type="tel"
+                      placeholder="Your Phone Number"
+                      value={plannerPhone}
+                      onChange={(e) => setPlannerPhone(e.target.value)}
+                      className="flex-grow px-4 py-3 rounded-lg border border-gray-200 text-sm focus:outline-none focus:border-primary"
+                    />
+                    <button
+                      onClick={() => {
+                        if (plannerName && plannerPhone) {
+                          setPlannerSubmitted(true);
+                        } else {
+                          alert("Please provide your name and phone number to send your custom schedule inquiry.");
+                        }
+                      }}
+                      className="bg-primary hover:bg-primary-hover text-white font-extrabold px-6 py-3 rounded-lg text-xs uppercase tracking-wider cursor-pointer shadow-md transition-all duration-200 shrink-0"
+                    >
+                      Lock in Discount
+                    </button>
+                  </div>
+                )}
+              </div>
             </div>
           </div>
         </div>

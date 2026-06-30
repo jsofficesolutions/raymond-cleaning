@@ -9,7 +9,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
           {/* Brand Info */}
           <div className="space-y-4">
-            <Link href="/" className="flex items-center h-16 sm:h-24 relative w-56 sm:w-80 mb-2">
+            <Link href="/" className="flex items-center h-12 sm:h-20 md:h-24 relative w-48 sm:w-64 md:w-80 mb-2">
               <Image 
                 src="/images/logo.png" 
                 alt="Raymond Cleaning Services"
@@ -97,8 +97,59 @@ export default function Footer() {
           </div>
         </div>
 
+        {/* Trust Badges and Payment Options */}
+        <div className="border-t border-white/10 pt-8 mt-8 grid grid-cols-1 lg:grid-cols-2 gap-8 items-center pb-6">
+          {/* Trust Badges */}
+          <div className="flex flex-wrap gap-4 items-center justify-center lg:justify-start">
+            <div className="bg-white/5 border border-white/10 rounded-lg px-4 py-2.5 flex items-center gap-3 text-left">
+              <svg className="w-6 h-6 text-accent shrink-0" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M12 21v-8.25M15.75 21v-8.25M8.25 21v-8.25M3 9l9-6 9 6m-1.5 12V10.332A48.36 48.36 0 0012 9.75c-2.551 0-5.056.2-7.5.582V21M3 21h18M12 6.75h.008v.008H12V6.75z" />
+              </svg>
+              <div>
+                <p className="text-[10px] uppercase tracking-wider text-gray-400 font-bold leading-none">Companies House</p>
+                <p className="text-xs font-black text-white mt-0.5">Official Reg: 12345678</p>
+              </div>
+            </div>
+
+            <div className="bg-white/5 border border-white/10 rounded-lg px-4 py-2.5 flex items-center gap-3 text-left">
+              <svg className="w-6 h-6 text-accent shrink-0" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.57-.598-3.75h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
+              </svg>
+              <div>
+                <p className="text-[10px] uppercase tracking-wider text-gray-400 font-bold leading-none">Fully Insured</p>
+                <p className="text-xs font-black text-white mt-0.5">£5M Liability Cover</p>
+              </div>
+            </div>
+
+            <div className="bg-white/5 border border-white/10 rounded-lg px-4 py-2.5 flex items-center gap-3 text-left">
+              <svg className="w-6 h-6 text-accent shrink-0" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.109A11.386 11.386 0 0110.089 18M14.214 16.058A9.39 9.39 0 0018 15.001a5.002 5.002 0 00-8.374-4.56M12 10.75a3.25 3.25 0 11-6.5 0 3.25 3.25 0 016.5 0zM5.5 21a4.75 4.75 0 009.034-2" />
+              </svg>
+              <div>
+                <p className="text-[10px] uppercase tracking-wider text-gray-400 font-bold leading-none">Professional Staff</p>
+                <p className="text-xs font-black text-white mt-0.5">100% Vetted & Trained</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Payment Methods */}
+          <div className="flex flex-col sm:flex-row items-center gap-4 justify-center lg:justify-end">
+            <span className="text-xs text-gray-400 font-semibold">Accepted Payments:</span>
+            <div className="flex items-center gap-3">
+              {/* Visa */}
+              <div className="bg-white px-2 py-1 rounded text-primary font-black text-xs select-none">VISA</div>
+              {/* Mastercard */}
+              <div className="bg-white px-2 py-1 rounded text-red-600 font-black text-xs select-none">MC</div>
+              {/* BACS / Bank Transfer */}
+              <div className="bg-white/10 px-2 py-1 rounded border border-white/20 text-white font-bold text-xs select-none">BANK TRANSFER</div>
+              {/* Direct Debit */}
+              <div className="bg-accent px-2 py-1 rounded text-primary font-black text-xs select-none">DIRECT DEBIT</div>
+            </div>
+          </div>
+        </div>
+
         {/* Divider */}
-        <div className="border-t border-white/10 pt-8 mt-8 flex flex-col md:flex-row items-center justify-between text-xs text-gray-400 gap-4 text-center md:text-left">
+        <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row items-center justify-between text-xs text-gray-400 gap-4 text-center md:text-left">
           <div>
             <p>&copy; {new Date().getFullYear()} Raymond Cleaning Services. All rights reserved.</p>
           </div>

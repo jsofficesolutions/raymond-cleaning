@@ -24,6 +24,22 @@ export default function Home() {
   const [postcode, setPostcode] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  // Bottom contact form state
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [phone, setPhone] = useState('');
+  const [message, setMessage] = useState('');
+  const [submitted, setSubmitted] = useState(false);
+
+  const handleContactSubmit = (e) => {
+    e.preventDefault();
+    if (!name || !email || !phone) {
+      alert("Please fill in name, email, and phone number.");
+      return;
+    }
+    setSubmitted(true);
+  };
+
   return (
     <div className="relative bg-white overflow-hidden">
       {/* 1. Hero Section */}
@@ -112,7 +128,7 @@ export default function Home() {
               </div>
 
               {/* Google Reviews Badge Framework */}
-              <div className="flex items-center gap-3 mt-8">
+              <div className="flex flex-wrap items-center gap-3 mt-8">
                 <div className="flex items-center gap-1.5 bg-white/95 px-2.5 py-1 rounded-sm shadow-sm">
                   <svg className="w-3.5 h-3.5 flex-shrink-0" viewBox="0 0 24 24">
                     <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" />
@@ -129,14 +145,24 @@ export default function Home() {
                     </svg>
                   ))}
                 </div>
-                <span className="text-sm font-bold text-white tracking-wide">
-                  4.9 / 5.0 Rating <span className="text-blue-200 font-normal text-xs ml-1">(based on 248 Google reviews)</span>
+                <span className="text-xs sm:text-sm font-bold text-white tracking-wide">
+                  4.9 / 5.0 Rating <span className="text-blue-200 font-normal text-[10px] sm:text-xs ml-1">(based on 248 Google reviews)</span>
                 </span>
               </div>
             </div>
 
-            {/* Right Column: Empty to showcase backdrop imagery */}
-            <div className="hidden lg:block lg:col-span-5 h-[300px]"></div>
+            {/* Right Column: Engaging Hero Shot Image */}
+            <div className="hidden lg:block lg:col-span-5 relative h-[380px] w-full self-center">
+              <div className="absolute inset-0 rounded-2xl overflow-hidden border-4 border-accent shadow-2xl">
+                <Image
+                  src="/images/about-me.png"
+                  alt="Aaron Raymond - Professional Exterior Cleaning Specialist"
+                  fill
+                  className="object-cover"
+                  priority
+                />
+              </div>
+            </div>
           </div>
         </div>
 
@@ -213,7 +239,7 @@ export default function Home() {
                           {service.title}
                         </h3>
                         
-                        <p className={`text-lg leading-relaxed ${textMutedClass}`}>
+                        <p className={`text-base sm:text-lg leading-relaxed ${textMutedClass} max-w-prose`}>
                           {service.longDesc}
                         </p>
 
@@ -269,6 +295,69 @@ export default function Home() {
             >
               Call Aaron: 07123 456781
             </a>
+          </div>
+        </div>
+      </section>
+
+      {/* 4. Bottom Contact Form Section */}
+      <section className="bg-off-white py-16 border-t border-gray-100">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="bg-white rounded-2xl shadow-xl p-8 border border-gray-150">
+            <div className="text-center mb-8">
+              <span className="text-accent font-black tracking-widest uppercase text-xs">Get In Touch</span>
+              <h2 className="text-3xl font-extrabold text-primary mt-2">Request a Call Back</h2>
+              <p className="text-gray-500 text-sm mt-1">Have questions or want a custom multi-service quote? Enter your details below and Aaron will call you back.</p>
+            </div>
+
+            {submitted ? (
+              <div className="bg-green-50 border border-green-200 text-green-800 p-6 rounded-xl text-center font-bold">
+                ✓ Thanks! Aaron will contact you at {phone} within 24 hours.
+              </div>
+            ) : (
+              <form onSubmit={handleContactSubmit} className="space-y-4">
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                  <input
+                    type="text"
+                    required
+                    placeholder="Your Name"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    className="w-full px-4 py-3 rounded-lg border border-gray-200 text-sm focus:outline-none focus:border-primary"
+                  />
+                  <input
+                    type="email"
+                    required
+                    placeholder="Your Email Address"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    className="w-full px-4 py-3 rounded-lg border border-gray-200 text-sm focus:outline-none focus:border-primary"
+                  />
+                  <input
+                    type="tel"
+                    required
+                    placeholder="Your Phone Number"
+                    value={phone}
+                    onChange={(e) => setPhone(e.target.value)}
+                    className="w-full px-4 py-3 rounded-lg border border-gray-200 text-sm focus:outline-none focus:border-primary"
+                  />
+                </div>
+                <textarea
+                  rows="3"
+                  placeholder="How can we help you? (e.g. multi-service discount, special building requirements)"
+                  value={message}
+                  onChange={(e) => setMessage(e.target.value)}
+                  className="w-full px-4 py-3 rounded-lg border border-gray-200 text-sm focus:outline-none focus:border-primary"
+                ></textarea>
+                <div className="text-center pt-2">
+                  <button
+                    type="submit"
+                    className="bg-primary hover:bg-primary-hover text-white font-extrabold px-10 py-3.5 rounded-lg text-xs uppercase tracking-wider cursor-pointer shadow-md transition-all duration-200"
+                  >
+                    Submit Inquiry
+                  </button>
+                </div>
+              </form>
+            )}
           </div>
         </div>
       </section>
