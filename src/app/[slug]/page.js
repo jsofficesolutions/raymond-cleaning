@@ -1,6 +1,7 @@
 import { notFound } from 'next/navigation';
 import { services } from '@/data/services';
 import { locations } from '@/data/locations';
+import { weeklySeoPayload } from '@/data/seoIntelligence';
 import ServicePageClient from '@/components/ServicePageClient';
 
 export function generateStaticParams() {
@@ -93,7 +94,20 @@ export default async function ServicePage({ params }) {
     notFound();
   }
 
-  return <ServicePageClient service={matchedService} location={matchedLocation} />;
+  const activeSeoService = weeklySeoPayload.services[matchedService.slug] || null;
+  const activeSeoLocation = matchedLocation 
+    ? (weeklySeoPayload.locationOverrides[`${matchedService.slug}-${matchedLocation.slug}`] || null) 
+    : null;
+
+  return (
+    <ServicePageClient 
+      service={matchedService} 
+      location={matchedLocation} 
+      seoService={activeSeoService}
+      seoLocation={activeSeoLocation}
+    />
+  );
 }
+
 
 

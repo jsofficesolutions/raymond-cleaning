@@ -10,7 +10,7 @@ const ESSEX_TOWNS = [
   "Rayleigh", "Brentwood", "Braintree", "Harlow", "Epping", "Saffron Walden"
 ];
 
-export default function ServicePageClient({ service, location }) {
+export default function ServicePageClient({ service, location, seoService, seoLocation }) {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
@@ -261,6 +261,58 @@ export default function ServicePageClient({ service, location }) {
                   ))}
                 </ul>
               </div>
+
+              {/* Dynamic Technical Specs Table */}
+              {seoService?.specs && (
+                <div className="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm mt-6">
+                  <h4 className="font-extrabold text-primary mb-4 text-lg">
+                    Technical Specifications
+                  </h4>
+                  <div className="overflow-x-auto">
+                    <table className="w-full text-left text-sm border-collapse">
+                      <thead>
+                        <tr className="border-b border-gray-200 bg-gray-50 text-gray-700 font-bold">
+                          <th className="p-3">Specification</th>
+                          <th className="p-3">Standard Details</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {Object.entries(seoService.specs).map(([key, val], idx) => (
+                          <tr key={idx} className={`border-b border-gray-100 ${idx % 2 === 0 ? 'bg-white' : 'bg-gray-50/50'}`}>
+                            <td className="p-3 font-bold text-slate-800">{key}</td>
+                            <td className="p-3 text-gray-600">{val}</td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              )}
+
+              {/* Localized Proof & Geographic Anchors */}
+              {seoLocation && (
+                <div className="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm mt-6 space-y-6">
+                  {seoLocation.geographicAnchors && (
+                    <div className="bg-blue-50/20 p-5 rounded-xl border border-blue-100 text-sm leading-relaxed text-gray-600">
+                      <strong className="font-bold text-blue-900 block mb-1">Local Operations Profile</strong>
+                      {seoLocation.geographicAnchors}
+                    </div>
+                  )}
+
+                  {seoLocation.localReview && (
+                    <blockquote className="italic border-l-4 border-accent pl-4 py-2 text-slate-700 text-sm bg-gray-50 rounded-r-lg">
+                      "{seoLocation.localReview}"
+                    </blockquote>
+                  )}
+
+                  {seoLocation.regionalOffer && (
+                    <div className="bg-accent/15 border-2 border-accent text-primary p-4 rounded-xl text-center shadow-xs">
+                      <span className="text-xs uppercase font-black tracking-widest text-primary block mb-1">Special Area Promotion</span>
+                      <p className="font-black text-sm">{seoLocation.regionalOffer}</p>
+                    </div>
+                  )}
+                </div>
+              )}
             </div>
 
             {/* Right: FAQs */}
@@ -284,6 +336,27 @@ export default function ServicePageClient({ service, location }) {
                   </div>
                 ))}
               </div>
+
+              {/* Local AI Q&A Blocks */}
+              {seoLocation?.localFrictionQA && (
+                <div className="space-y-4 pt-6 border-t border-gray-150">
+                  <span className="text-accent font-black tracking-wider uppercase text-xs sm:text-sm block">
+                    Local Area Q&A
+                  </span>
+                  <div className="space-y-4">
+                    {seoLocation.localFrictionQA.map((faq, i) => (
+                      <div key={i} className="bg-amber-50/20 p-5 rounded-xl border border-accent/20 shadow-sm">
+                        <h3 className="font-extrabold text-slate-dark text-base mb-2">
+                          {faq.q}
+                        </h3>
+                        <p className="text-sm text-gray-600 leading-relaxed">
+                          {faq.a}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
 
               {/* Call out box */}
               <div className="bg-primary text-white p-6 rounded-2xl shadow-md border-b-4 border-accent">
@@ -327,33 +400,59 @@ export default function ServicePageClient({ service, location }) {
         </div>
       </section>
 
-      {/* Dynamic JSON-LD Structured Schema */}
+      {/* Dynamic GEO JSON-LD Structured Schema */}
       <script 
         type="application/ld+json" 
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "Service",
-            "name": `${service.title} ${location ? `in ${location.name}` : 'Essex'}`,
-            "description": service.desc,
-            "provider": {
-              "@type": "LocalBusiness",
-              "name": "Raymond Cleaning Services",
-              "image": "https://raymondcleaning.co.uk/images/logo.png",
-              "telephone": "07123456781",
-              "priceRange": "$$",
-              "address": {
-                "@type": "PostalAddress",
-                "addressLocality": location ? location.name : "Essex",
-                "addressRegion": "Essex",
-                "addressCountry": "GB"
+          __html: (() => {
+            const serviceSchema = {
+              "@type": "Service",
+              "name": `${service.title} ${location ? `in ${location.name}` : 'Essex'}`,
+              "description": service.desc,
+              "provider": {
+                "@type": "LocalBusiness",
+                "name": "Raymond Cleaning Services",
+                "image": "https://raymondcleaning.co.uk/images/logo.png",
+                "telephone": "07123456781",
+                "priceRange": "$$",
+                "address": {
+                  "@type": "PostalAddress",
+                  "addressLocality": location ? location.name : "Essex",
+                  "addressRegion": "Essex",
+                  "addressCountry": "GB"
+                }
+              },
+              "areaServed": {
+                "@type": "AdministrativeArea",
+                "name": location ? location.name : "Essex"
               }
-            },
-            "areaServed": {
-              "@type": "AdministrativeArea",
-              "name": location ? location.name : "Essex"
+            };
+
+            if (seoLocation?.localFrictionQA) {
+              return JSON.stringify({
+                "@context": "https://schema.org",
+                "@graph": [
+                  serviceSchema,
+                  {
+                    "@type": "FAQPage",
+                    "mainEntity": seoLocation.localFrictionQA.map(faq => ({
+                      "@type": "Question",
+                      "name": faq.q,
+                      "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": faq.a
+                      }
+                    }))
+                  }
+                ]
+              });
             }
-          })
+
+            return JSON.stringify({
+              "@context": "https://schema.org",
+              ...serviceSchema
+            });
+          })()
         }}
       />
     </div>
