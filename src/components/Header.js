@@ -37,7 +37,7 @@ export default function Header() {
 
         {/* Tier 1: Branding & Unified Capsule Phone/Hamburger CTA */}
         <div className="w-full bg-white transition-all duration-300">
-          <div className={`max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 transition-all duration-300 ${isScrolled ? 'py-2 sm:py-3' : 'py-4 sm:py-6'}`}>
+          <div className={`max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 transition-all duration-300 ${isScrolled ? 'py-1 sm:py-1.5' : 'py-3 sm:py-4.5'}`}>
             
             {/* Desktop Layout (md+) */}
             <div className="hidden md:flex items-center justify-between gap-4">
@@ -47,8 +47,8 @@ export default function Header() {
                   href="/" 
                   className={`flex items-center relative transition-all duration-300 ${
                     isScrolled 
-                      ? 'h-20 w-[240px] md:h-24 md:w-[280px]' 
-                      : 'h-28 w-[320px] sm:h-32 sm:w-[360px] md:h-40 md:w-[480px]'
+                      ? 'h-14 w-28 md:h-16 md:w-32' 
+                      : 'h-20 w-40 sm:h-24 sm:w-48 md:h-28 md:w-56'
                   }`}
                 >
                   <Image 
@@ -112,7 +112,7 @@ export default function Header() {
                 <Link 
                   href="/" 
                   className={`flex items-center relative transition-all duration-300 ${
-                    isScrolled ? 'h-20 w-48' : 'h-24 w-56'
+                    isScrolled ? 'h-12 w-24' : 'h-16 w-32'
                   }`}
                 >
                   <Image 
@@ -145,7 +145,7 @@ export default function Header() {
         {/* Tier 2: High-Density Service Navigation Lane (hidden on mobile, visible md+) */}
         <div className="hidden md:block w-full bg-white border-t border-slate-100">
           <div 
-            className={`max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 overflow-x-auto no-scrollbar scroll-smooth transition-all duration-300 ${isScrolled ? 'py-3' : 'py-5'}`}
+            className={`max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 overflow-x-auto no-scrollbar scroll-smooth transition-all duration-300 ${isScrolled ? 'py-2' : 'py-3.5'}`}
             style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
           >
             <div className="flex flex-nowrap items-center justify-start md:justify-between gap-6 md:gap-0 w-full min-w-max md:min-w-0">
@@ -279,7 +279,7 @@ export default function Header() {
       </header>
 
       {/* Non-collapsing spacer to prevent layout shifts when the header contracts */}
-      <div className="h-[136px] md:h-[310px] w-full flex-shrink-0" />
+      <div className="h-[88px] md:h-[238px] w-full flex-shrink-0" />
     </>
   );
 }
