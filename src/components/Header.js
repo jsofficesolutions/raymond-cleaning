@@ -46,10 +46,10 @@ export default function Header() {
                 <Link 
                   href="/" 
                   className={`flex items-center relative transition-all duration-300 ${
-                    isScrolled 
-                      ? 'h-16 w-32 md:h-20 md:w-40' 
-                      : 'h-20 w-40 sm:h-24 sm:w-48 md:h-28 md:w-56'
-                  }`}
+                  isScrolled 
+                    ? 'h-18 w-36 md:h-24 md:w-48' 
+                    : 'h-24 w-48 sm:h-28 sm:w-56 md:h-32 md:w-64'
+                }`}
                 >
                   <Image 
                     src="/images/logo.png" 
@@ -112,7 +112,7 @@ export default function Header() {
                 <Link 
                   href="/" 
                   className={`flex items-center relative transition-all duration-300 ${
-                    isScrolled ? 'h-14 w-28' : 'h-16 w-32'
+                    isScrolled ? 'h-16 w-32' : 'h-18 w-36'
                   }`}
                 >
                   <Image 
@@ -281,7 +281,7 @@ export default function Header() {
       </header>
 
       {/* Non-collapsing spacer to prevent layout shifts when the header contracts */}
-      <div className="h-[88px] md:h-[238px] w-full flex-shrink-0" />
+      <div className="h-[96px] md:h-[254px] w-full flex-shrink-0" />
     </>
   );
 }
