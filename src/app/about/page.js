@@ -9,7 +9,7 @@ export default function About() {
       <section className="relative bg-primary text-white pt-20 pb-36 overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image
-            src="/images/hero-bg.png"
+            src="/images/hero-bg.webp"
             alt="Beautiful property header"
             fill
             className="object-cover opacity-15"
@@ -61,7 +61,7 @@ export default function About() {
             <div className="lg:col-span-6">
               <div className="relative h-[300px] sm:h-[400px] w-full rounded-2xl overflow-hidden shadow-xl border border-gray-100">
                 <Image
-                  src="/images/about-me.png"
+                  src="/images/about-me.webp"
                   alt="Aaron Raymond standing by his service van"
                   fill
                   className="object-cover"
@@ -106,7 +106,7 @@ export default function About() {
             <div className="lg:col-span-6 lg:order-1">
               <div className="relative h-[300px] sm:h-[400px] w-full rounded-2xl overflow-hidden shadow-xl border border-gray-150">
                 <Image
-                  src="/images/hero-bg.png"
+                  src="/images/hero-bg.webp"
                   alt="Spotless Essex suburban house cleaned by Raymond Cleaning Services"
                   fill
                   className="object-cover"
@@ -140,7 +140,7 @@ export default function About() {
             <div className="lg:col-span-6">
               <div className="relative h-[300px] sm:h-[400px] w-full rounded-2xl overflow-hidden shadow-xl border border-gray-100">
                 <Image
-                  src="/images/window-cleaning.png"
+                  src="/images/window-cleaning.webp"
                   alt="Professional window cleaning"
                   fill
                   className="object-cover"

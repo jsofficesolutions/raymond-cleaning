@@ -114,7 +114,7 @@ export default function Schedule() {
       <section className="relative bg-primary text-white pt-20 pb-36 overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image
-            src="/images/hero-bg.png"
+            src="/images/hero-bg.webp"
             alt="Beautiful property header"
             fill
             className="object-cover opacity-15"
@@ -551,7 +551,7 @@ export default function Schedule() {
               >
                 {/* Before Image (Base) */}
                 <Image
-                  src="/images/before-after-dirty.png"
+                  src="/images/before-after-dirty.webp"
                   alt="Dirty wall before cleaning"
                   fill
                   className="slider-image"
@@ -569,7 +569,7 @@ export default function Schedule() {
                 >
                   <div className="absolute inset-y-0 left-0 w-[100vw] h-full aspect-video">
                     <Image
-                      src="/images/before-after-clean.png"
+                      src="/images/before-after-clean.webp"
                       alt="Clean wall after cleaning"
                       fill
                       className="slider-image"

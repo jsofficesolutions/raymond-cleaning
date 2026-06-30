@@ -47,7 +47,7 @@ export default function Home() {
         {/* Background Image with Dark Overlay */}
         <div className="absolute inset-0 z-0">
           <Image
-            src="/images/hero-bg.png"
+            src="/images/hero-bg.webp"
             alt="Pristine house in Essex"
             fill
             className="object-cover opacity-25"
@@ -62,13 +62,13 @@ export default function Home() {
             <div className="lg:col-span-7 space-y-8 text-left">
               
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight leading-none">
-                <span className="text-white">Exterior Cleaning</span> <br className="hidden sm:inline" />
-                <span className="text-accent">Services Essex</span>
+                <span className="text-white">Professional Exterior</span> <br className="hidden sm:inline" />
+                <span className="text-accent">Cleaning Services Essex</span>
               </h1>
               <div className="w-16 h-0.5 bg-red-600 mt-4"></div>
 
               <p className="text-lg md:text-xl text-gray-100 leading-snug max-w-2xl font-semibold mt-6">
-                Professional, fully insured exterior cleaning solutions tailored for homes and businesses across Essex. We restore your property's shine and protect it from structural damage with specialized equipment.
+                Essex's premier specialists for residential and commercial window cleaning, gutter clearance, pressure washing, soft washing, and roofline maintenance. Serving Chelmsford, Southend, Colchester, Basildon, and surrounding areas.
               </p>
 
               {/* Pimlico-Style Inline Horizontal Conversion Widget Bar */}
@@ -155,7 +155,7 @@ export default function Home() {
             <div className="hidden lg:block lg:col-span-5 relative h-[380px] w-full self-center">
               <div className="absolute inset-0 rounded-2xl overflow-hidden border-4 border-accent shadow-2xl">
                 <Image
-                  src="/images/about-me.png"
+                  src="/images/about-me.webp"
                   alt="Aaron Raymond - Professional Exterior Cleaning Specialist"
                   fill
                   className="object-cover"
