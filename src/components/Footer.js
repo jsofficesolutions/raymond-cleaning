@@ -46,6 +46,11 @@ export default function Footer() {
                   About Us
                 </Link>
               </li>
+              <li>
+                <Link href="/locations" className="hover:text-accent transition-colors">
+                  Locations We Serve
+                </Link>
+              </li>
             </ul>
           </div>
 
