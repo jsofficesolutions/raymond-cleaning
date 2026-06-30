@@ -230,9 +230,15 @@ export default function Home() {
                       {/* Text block */}
                       <div className={`lg:col-span-6 space-y-6 ${isEven ? 'lg:order-2' : 'lg:order-1'}`}>
                         <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-accent/20 text-accent">
-                          <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
-                          </svg>
+                          {service.iconSvgPath ? (
+                            <svg className="w-7 h-7" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" d={service.iconSvgPath} />
+                            </svg>
+                          ) : (
+                            <svg className="w-7 h-7" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                            </svg>
+                          )}
                         </div>
                         
                         <h3 className={`text-3xl font-extrabold ${titleClass}`}>
@@ -270,6 +276,113 @@ export default function Home() {
               </div>
             );
           })}
+        </div>
+      </section>
+
+      {/* Subscribe & Save Plans Section */}
+      <section className="bg-off-white py-20 relative z-20 border-t border-gray-150">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <span className="text-accent font-black tracking-widest uppercase text-xs sm:text-sm">
+            Exclusive Offers
+          </span>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-primary mt-2">
+            Subscribe & Save Options
+          </h2>
+          <p className="text-gray-500 mt-4 max-w-2xl mx-auto text-base sm:text-lg">
+            Compare our service options. Subscribe to a custom cleaning schedule to lock in the absolute best rates and keep your property gleaming.
+          </p>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto mt-12 items-stretch">
+            {/* One-Off Clean Card */}
+            <div className="bg-white rounded-2xl border border-gray-200 p-8 shadow-sm flex flex-col justify-between text-left relative overflow-hidden transition-all hover:shadow-md">
+              <div>
+                <span className="text-xs font-black uppercase text-gray-400 tracking-wider">Pay As You Go</span>
+                <h3 className="text-2xl font-extrabold text-primary mt-1">One-Off Clean</h3>
+                <p className="text-gray-500 text-sm mt-3 leading-relaxed">
+                  Perfect for emergency clearing, move-out cleaning, or seasonal tidy-ups. No commitments.
+                </p>
+                <div className="w-12 h-1 h-accent bg-accent my-6"></div>
+
+                <ul className="space-y-3.5 text-sm text-gray-600 font-semibold">
+                  <li className="flex items-center gap-2">
+                    <span className="text-red-500 font-extrabold">✕</span> Standard rates (no discount applied)
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <span className="text-primary font-bold">✓</span> 100% Pure Water finish on windows
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <span className="text-primary font-bold">✓</span> Vetted, background-checked crew
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <span className="text-primary font-bold">✓</span> Fully insured (£5M Liability Cover)
+                  </li>
+                </ul>
+              </div>
+
+              <div className="mt-8 pt-6 border-t border-gray-100">
+                <Link
+                  href="/#contact-back"
+                  onClick={() => {
+                    const el = document.getElementById('contact-back');
+                    if (el) el.scrollIntoView({ behavior: 'smooth' });
+                  }}
+                  className="w-full text-center bg-slate-100 hover:bg-slate-200 text-slate-800 font-extrabold py-3.5 block rounded-lg text-sm uppercase tracking-wider transition-all"
+                >
+                  Book One-Off Quote
+                </Link>
+              </div>
+            </div>
+
+            {/* Subscribe & Save Plan */}
+            <div className="bg-white rounded-2xl border-4 border-accent p-8 shadow-xl flex flex-col justify-between text-left relative overflow-hidden transition-all hover:scale-[1.02]">
+              {/* Popularity Ribbon */}
+              <div className="absolute top-0 right-0 bg-accent text-primary font-black text-[10px] uppercase tracking-widest px-5 py-2 shadow rounded-bl-lg">
+                MOST POPULAR
+              </div>
+
+              <div>
+                <span className="text-xs font-black uppercase text-accent tracking-wider">Rinse & Repeat Plan</span>
+                <h3 className="text-2xl font-extrabold text-primary mt-1">Subscribe & Save</h3>
+                <p className="text-gray-500 text-sm mt-3 leading-relaxed">
+                  Join our regular cycle (4-week, 8-week, or 6-month checks) to guarantee constant property protection.
+                </p>
+                
+                <div className="flex items-baseline gap-1 mt-4">
+                  <span className="text-3xl font-black text-emerald-600">Save 15%</span>
+                  <span className="text-xs font-bold text-gray-400">on every visit</span>
+                </div>
+
+                <div className="w-12 h-1 h-accent bg-accent my-4"></div>
+
+                <ul className="space-y-3.5 text-sm text-gray-600 font-semibold">
+                  <li className="flex items-center gap-2 text-emerald-600">
+                    <span className="font-extrabold">✓</span> 15% Lifetime Discount locked in
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <span className="text-primary font-bold">✓</span> Price inflation protection
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <span className="text-primary font-bold">✓</span> Skip or reschedule anytime (free)
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <span className="text-primary font-bold">✓</span> Automated reminders before arrivals
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <span className="text-primary font-bold">✓</span> Free visual camera check on gutters
+                  </li>
+                </ul>
+              </div>
+
+              <div className="mt-8 pt-6 border-t border-gray-100">
+                <Link
+                  href="/schedule"
+                  className="w-full text-center bg-primary hover:bg-primary-hover text-white font-extrabold py-3.5 block rounded-lg text-sm uppercase tracking-wider shadow-md hover:shadow-lg transition-all"
+                >
+                  Configure Schedule & Save
+                </Link>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 

@@ -41,7 +41,16 @@ export default function ServicePageClient({ service }) {
           <div className="absolute inset-0 bg-gradient-to-t from-primary via-primary/85 to-primary/60"></div>
         </div>
 
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center space-y-6">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center space-y-6 flex flex-col items-center">
+          {/* Glowing Service Icon */}
+          {service.iconSvgPath && (
+            <div className="w-20 h-20 rounded-full bg-accent/20 border-2 border-accent text-accent flex items-center justify-center shadow-lg shadow-accent/10 mb-2">
+              <svg className="w-10 h-10" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" d={service.iconSvgPath} />
+              </svg>
+            </div>
+          )}
+
           <span className="text-accent font-black tracking-widest uppercase text-xs sm:text-sm">
             Professional Exterior Care
           </span>
