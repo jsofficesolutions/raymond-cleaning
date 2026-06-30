@@ -47,7 +47,7 @@ export default function Header() {
                   href="/" 
                   className={`flex items-center relative transition-all duration-300 ${
                     isScrolled 
-                      ? 'h-14 w-28 md:h-16 md:w-32' 
+                      ? 'h-16 w-32 md:h-20 md:w-40' 
                       : 'h-20 w-40 sm:h-24 sm:w-48 md:h-28 md:w-56'
                   }`}
                 >
@@ -112,7 +112,7 @@ export default function Header() {
                 <Link 
                   href="/" 
                   className={`flex items-center relative transition-all duration-300 ${
-                    isScrolled ? 'h-12 w-24' : 'h-16 w-32'
+                    isScrolled ? 'h-14 w-28' : 'h-16 w-32'
                   }`}
                 >
                   <Image 
