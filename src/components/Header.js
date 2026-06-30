@@ -240,7 +240,9 @@ export default function Header() {
         </div>
 
         {/* Tier 3: Stark, Solid Trust Anchor Ribbon */}
-        <div className="hidden md:block w-full bg-accent py-3.5 shadow-inner">
+        <div className={`hidden md:block w-full bg-accent shadow-inner transition-all duration-300 overflow-hidden ${
+          isScrolled ? 'max-h-0 py-0 opacity-0' : 'max-h-14 py-3.5 opacity-100'
+        }`}>
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-3.5 text-xs font-black tracking-wider text-center uppercase">
             
             <div className="flex items-center gap-2.5">
