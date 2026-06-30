@@ -2,17 +2,19 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
+import { locations } from '@/data/locations';
 
 const ESSEX_TOWNS = [
   "Chelmsford", "Southend-on-Sea", "Colchester", "Basildon", 
   "Rayleigh", "Brentwood", "Braintree", "Harlow", "Epping", "Saffron Walden"
 ];
 
-export default function ServicePageClient({ service }) {
+export default function ServicePageClient({ service, location }) {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
-  const [town, setTown] = useState('');
+  const [town, setTown] = useState(location ? location.name : '');
   const [schedule, setSchedule] = useState('6-months');
   const [message, setMessage] = useState('');
   const [formSubmitted, setFormSubmitted] = useState(false);
@@ -62,10 +64,12 @@ export default function ServicePageClient({ service }) {
             Professional Exterior Care
           </span>
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-black tracking-tight leading-none text-white">
-            Professional {service.title} Essex
+            Professional {service.title} {location ? `in ${location.name}` : 'Essex'}
           </h1>
           <p className="text-lg sm:text-xl text-gray-200 max-w-3xl mx-auto font-light leading-relaxed">
-            {service.longDesc}
+            {location 
+              ? `Need reliable exterior care? Raymond Cleaning Services is proud to provide premium ${service.title.toLowerCase()} services to homes and businesses in ${location.name} (${location.landmark}). ${service.longDesc}`
+              : service.longDesc}
           </p>
         </div>
 
@@ -85,10 +89,10 @@ export default function ServicePageClient({ service }) {
             
             <div className="text-center mb-8">
               <h2 className="text-2xl sm:text-3xl font-extrabold text-primary">
-                Book a Free {service.title} Quote
+                Book a Free {service.title} Quote {location ? `in ${location.name}` : ''}
               </h2>
               <p className="text-gray-500 text-sm sm:text-base mt-2">
-                Fill in the form below and Aaron will get back to you with a personalized estimate.
+                Fill in the form below and Aaron will get back to you with a personalized estimate for your property {location ? `in ${location.name}` : 'in Essex'}.
               </p>
             </div>
 
@@ -299,6 +303,59 @@ export default function ServicePageClient({ service }) {
           </div>
         </div>
       </section>
+
+      {/* 4. Areas We Cover Section for Internal Linking */}
+      <section className="bg-slate-50 py-16 border-t border-gray-100">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
+          <h4 className="text-xl font-extrabold text-primary">
+            Areas We Cover for {service.title} in Essex
+          </h4>
+          <p className="text-sm text-gray-500 max-w-2xl mx-auto leading-relaxed">
+            Raymond Cleaning Services is dedicated to providing high-quality, professional {service.title.toLowerCase()} services to homes and businesses across the county. Explore our key service locations:
+          </p>
+          <div className="flex flex-wrap justify-center gap-3 max-w-4xl mx-auto pt-2">
+            {locations.map((loc) => (
+              <Link 
+                key={loc.slug} 
+                href={`/${service.slug}-${loc.slug}`}
+                className="bg-white hover:bg-slate-100 text-slate-800 font-extrabold text-xs px-4 py-2.5 rounded-lg border border-gray-200 transition-colors shadow-xs"
+              >
+                {service.title} {loc.name}
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Dynamic JSON-LD Structured Schema */}
+      <script 
+        type="application/ld+json" 
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Service",
+            "name": `${service.title} ${location ? `in ${location.name}` : 'Essex'}`,
+            "description": service.desc,
+            "provider": {
+              "@type": "LocalBusiness",
+              "name": "Raymond Cleaning Services",
+              "image": "https://raymondcleaning.co.uk/images/logo.png",
+              "telephone": "07123456781",
+              "priceRange": "$$",
+              "address": {
+                "@type": "PostalAddress",
+                "addressLocality": location ? location.name : "Essex",
+                "addressRegion": "Essex",
+                "addressCountry": "GB"
+              }
+            },
+            "areaServed": {
+              "@type": "AdministrativeArea",
+              "name": location ? location.name : "Essex"
+            }
+          })
+        }}
+      />
     </div>
   );
 }
