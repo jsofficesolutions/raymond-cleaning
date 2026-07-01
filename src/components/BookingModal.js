@@ -51,16 +51,16 @@ export default function BookingModal({ isOpen, onClose, initialService, initialP
             
             {/* Left Column: Direct-Call Header Block */}
             <div className="md:col-span-5 bg-primary text-white text-center py-8 px-6 md:p-8 flex flex-col justify-center items-center relative">
-              <h3 className="text-xl sm:text-2xl md:text-xl lg:text-2xl font-extrabold uppercase tracking-wide">
+              <h3 className="text-2xl sm:text-3xl md:text-xl lg:text-2xl font-extrabold uppercase tracking-wide">
                 Make a Booking
               </h3>
               <div className="w-12 h-0.5 bg-accent my-3 md:my-4"></div>
-              <p className="text-xs sm:text-sm font-bold text-blue-100 mt-1">
+              <p className="text-sm sm:text-base font-bold text-blue-100 mt-1">
                 Simply call and we'll book you in now:
               </p>
               <a
                 href="tel:07123456781"
-                className="block text-2xl sm:text-3xl md:text-2xl lg:text-3xl font-black mt-2 tracking-tight hover:scale-105 transition-transform duration-200"
+                className="block text-3xl sm:text-4xl md:text-2xl lg:text-3xl font-black mt-2 tracking-tight hover:scale-105 transition-transform duration-200"
               >
                 07123 456781
               </a>
@@ -103,12 +103,12 @@ export default function BookingModal({ isOpen, onClose, initialService, initialP
                   </button>
                 </div>
               ) : (
-                <form onSubmit={handleSubmit} className="space-y-4">
+                <form onSubmit={handleSubmit} className="space-y-5">
                   <div>
-                    <h4 className="text-sm font-black uppercase tracking-wider text-primary">
+                    <h4 className="text-base sm:text-lg font-black uppercase tracking-wider text-primary">
                       Or Request an Estimate Online
                     </h4>
-                    <p className="text-[11px] text-slate-400 font-semibold mt-0.5">
+                    <p className="text-xs sm:text-sm text-slate-500 font-semibold mt-1">
                       We'll review your details and contact you with a suitable quote option.
                     </p>
                   </div>
@@ -117,7 +117,7 @@ export default function BookingModal({ isOpen, onClose, initialService, initialP
                     
                     {/* Name Field */}
                     <div>
-                      <label className="block text-[10px] font-extrabold uppercase tracking-wider text-blue-900 mb-1.5">
+                      <label className="block text-xs sm:text-sm font-extrabold uppercase tracking-wider text-blue-900 mb-2">
                         Name *
                       </label>
                       <input
@@ -126,19 +126,19 @@ export default function BookingModal({ isOpen, onClose, initialService, initialP
                         value={name}
                         onChange={(e) => setName(e.target.value)}
                         placeholder="First Name, Surname"
-                        className="w-full h-10 px-3.5 rounded-xl border border-gray-200 bg-white focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/10 transition-all text-xs text-slate-800 placeholder-gray-400 shadow-sm"
+                        className="w-full h-14 md:h-10 px-4 md:px-3.5 rounded-xl border border-gray-200 bg-white focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/10 transition-all text-base md:text-xs text-slate-800 placeholder:text-sm md:placeholder:text-xs placeholder-gray-400 shadow-sm"
                       />
                     </div>
 
                     {/* Contact Number Field */}
                     <div>
-                      <label className="block text-[10px] font-extrabold uppercase tracking-wider text-blue-900 mb-1.5">
+                      <label className="block text-xs sm:text-sm font-extrabold uppercase tracking-wider text-blue-900 mb-2">
                         Contact Number *
                       </label>
-                      <div className="relative flex items-center bg-white border border-gray-200 rounded-xl shadow-sm focus-within:border-primary focus-within:ring-2 focus-within:ring-primary/10 transition-all overflow-hidden h-10">
-                        <div className="flex items-center gap-1 px-2.5 border-r border-gray-150 bg-slate-50 text-[10px] text-slate-500 font-bold select-none h-full">
-                          <span className="text-sm">🇬🇧</span>
-                          <svg className="w-2.5 h-2.5 text-slate-400" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                      <div className="relative flex items-center bg-white border border-gray-200 rounded-xl shadow-sm focus-within:border-primary focus-within:ring-2 focus-within:ring-primary/10 transition-all overflow-hidden h-14 md:h-10">
+                        <div className="flex items-center gap-1.5 px-3 border-r border-gray-150 bg-slate-50 text-xs md:text-[10px] text-slate-500 font-bold select-none h-full animate-in fade-in duration-200">
+                          <span className="text-base md:text-sm">🇬🇧</span>
+                          <svg className="w-3 h-3 md:w-2.5 md:h-2.5 text-slate-400" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
                           </svg>
                         </div>
@@ -148,14 +148,14 @@ export default function BookingModal({ isOpen, onClose, initialService, initialP
                           value={phone}
                           onChange={(e) => setPhone(e.target.value)}
                           placeholder="07400 123456"
-                          className="w-full px-3 py-2 bg-transparent outline-none text-xs text-slate-800 placeholder-gray-400"
+                          className="w-full px-4 py-2 bg-transparent outline-none text-base md:text-xs text-slate-800 placeholder:text-sm md:placeholder:text-xs placeholder-gray-400"
                         />
                       </div>
                     </div>
 
                     {/* Email Address Field */}
                     <div>
-                      <label className="block text-[10px] font-extrabold uppercase tracking-wider text-blue-900 mb-1.5">
+                      <label className="block text-xs sm:text-sm font-extrabold uppercase tracking-wider text-blue-900 mb-2">
                         Email Address *
                       </label>
                       <input
@@ -164,13 +164,13 @@ export default function BookingModal({ isOpen, onClose, initialService, initialP
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         placeholder="example@server.co.uk"
-                        className="w-full h-10 px-3.5 rounded-xl border border-gray-200 bg-white focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/10 transition-all text-xs text-slate-800 placeholder-gray-400 shadow-sm"
+                        className="w-full h-14 md:h-10 px-4 md:px-3.5 rounded-xl border border-gray-200 bg-white focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/10 transition-all text-base md:text-xs text-slate-800 placeholder:text-sm md:placeholder:text-xs placeholder-gray-400 shadow-sm"
                       />
                     </div>
 
                     {/* Postcode Field */}
                     <div>
-                      <label className="block text-[10px] font-extrabold uppercase tracking-wider text-blue-900 mb-1.5">
+                      <label className="block text-xs sm:text-sm font-extrabold uppercase tracking-wider text-blue-900 mb-2">
                         Postcode
                       </label>
                       <input
@@ -179,7 +179,7 @@ export default function BookingModal({ isOpen, onClose, initialService, initialP
                         value={postcode}
                         onChange={(e) => setPostcode(e.target.value.toUpperCase())}
                         placeholder="RM38HQ"
-                        className="w-full h-10 px-3.5 rounded-xl border border-gray-200 bg-white focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/10 transition-all text-xs text-slate-800 placeholder-gray-400 shadow-sm uppercase placeholder:normal-case"
+                        className="w-full h-14 md:h-10 px-4 md:px-3.5 rounded-xl border border-gray-200 bg-white focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/10 transition-all text-base md:text-xs text-slate-800 placeholder:text-sm md:placeholder:text-xs placeholder-gray-400 shadow-sm uppercase placeholder:normal-case"
                       />
                     </div>
 
@@ -187,7 +187,7 @@ export default function BookingModal({ isOpen, onClose, initialService, initialP
 
                   {/* Service Select (Full Width) */}
                   <div>
-                    <label className="block text-[10px] font-extrabold uppercase tracking-wider text-blue-900 mb-1.5">
+                    <label className="block text-xs sm:text-sm font-extrabold uppercase tracking-wider text-blue-900 mb-2">
                       Service *
                     </label>
                     <div className="relative">
@@ -195,7 +195,7 @@ export default function BookingModal({ isOpen, onClose, initialService, initialP
                         required
                         value={service}
                         onChange={(e) => setService(e.target.value)}
-                        className="w-full h-10 px-3.5 rounded-xl border border-gray-200 bg-white focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/10 transition-all text-xs text-slate-800 appearance-none shadow-sm"
+                        className="w-full h-14 md:h-10 px-4 md:px-3.5 rounded-xl border border-gray-200 bg-white focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/10 transition-all text-base md:text-xs text-slate-800 appearance-none shadow-sm"
                       >
                         <option value="">-- Choose a Service --</option>
                         {services.map((s) => (
@@ -204,8 +204,8 @@ export default function BookingModal({ isOpen, onClose, initialService, initialP
                           </option>
                         ))}
                       </select>
-                      <div className="absolute inset-y-0 right-0 flex items-center pr-3.5 pointer-events-none text-gray-400">
-                        <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                      <div className="absolute inset-y-0 right-0 flex items-center pr-4 md:pr-3.5 pointer-events-none text-gray-400">
+                        <svg className="w-4 h-4 md:w-3.5 md:h-3.5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
                         </svg>
                       </div>
@@ -214,30 +214,30 @@ export default function BookingModal({ isOpen, onClose, initialService, initialP
 
                   {/* Issue Details (Full Width) */}
                   <div>
-                    <label className="block text-[10px] font-extrabold uppercase tracking-wider text-blue-900 mb-1.5">
+                    <label className="block text-xs sm:text-sm font-extrabold uppercase tracking-wider text-blue-900 mb-2">
                       Details about the issue you're having
                     </label>
                     <textarea
                       value={details}
                       onChange={(e) => setDetails(e.target.value)}
                       placeholder="Describe the issue you are experiencing, when it happens, etc"
-                      className="w-full px-3.5 py-2 rounded-xl border border-gray-200 bg-white focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/10 transition-all text-xs text-slate-800 placeholder-gray-400 shadow-sm min-h-[60px] max-h-[100px] resize-y"
+                      className="w-full px-4 md:px-3.5 py-3 md:py-2 rounded-xl border border-gray-200 bg-white focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/10 transition-all text-base md:text-xs text-slate-800 placeholder:text-sm md:placeholder:text-xs placeholder-gray-400 shadow-sm min-h-[100px] md:min-h-[60px] max-h-[150px] md:max-h-[100px] resize-y"
                     />
                   </div>
 
                   {/* T&C Subtext */}
-                  <p className="text-[9px] text-gray-400 leading-normal">
+                  <p className="text-[10px] sm:text-xs text-gray-400 leading-normal">
                     By using this contact form you agree to the Raymond Cleaning Services Ltd{' '}
                     <span className="underline cursor-pointer hover:text-primary transition-colors">Terms & Conditions</span>
                     , and use of your details in accordance with our{' '}
                     <span className="underline cursor-pointer hover:text-primary transition-colors">Privacy Policy</span>.
                   </p>
 
-                  {/* Submit Button (Left Aligned) */}
-                  <div className="flex justify-start pt-1">
+                  {/* Submit Button (Full-width on mobile) */}
+                  <div className="flex justify-start pt-1 w-full">
                     <button
                       type="submit"
-                      className="bg-primary hover:bg-primary-hover text-white font-extrabold px-8 py-3 rounded-lg uppercase tracking-wider text-xs cursor-pointer shadow-md transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg"
+                      className="w-full md:w-auto bg-primary hover:bg-primary-hover text-white font-black px-8 py-5 md:py-3.5 rounded-xl uppercase tracking-wider text-base md:text-xs cursor-pointer shadow-md transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg"
                     >
                       Send Booking Request
                     </button>

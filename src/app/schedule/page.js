@@ -379,20 +379,20 @@ export default function Schedule() {
                     ✓ Custom schedule inquiry sent! Aaron will contact you shortly to confirm dates.
                   </div>
                 ) : (
-                  <div className="flex flex-col sm:flex-row gap-3">
+                  <div className="flex flex-col sm:flex-row gap-4 sm:gap-3">
                     <input
                       type="text"
                       placeholder="Your Name"
                       value={plannerName}
                       onChange={(e) => setPlannerName(e.target.value)}
-                      className="flex-grow px-4 py-3 rounded-lg border border-gray-200 text-sm focus:outline-none focus:border-primary"
+                      className="flex-grow px-5 py-4.5 md:px-4 md:py-3 rounded-lg border border-gray-200 text-base md:text-sm focus:outline-none focus:border-primary"
                     />
                     <input
                       type="tel"
                       placeholder="Your Phone Number"
                       value={plannerPhone}
                       onChange={(e) => setPlannerPhone(e.target.value)}
-                      className="flex-grow px-4 py-3 rounded-lg border border-gray-200 text-sm focus:outline-none focus:border-primary"
+                      className="flex-grow px-5 py-4.5 md:px-4 md:py-3 rounded-lg border border-gray-200 text-base md:text-sm focus:outline-none focus:border-primary"
                     />
                     <button
                       onClick={() => {
@@ -402,7 +402,7 @@ export default function Schedule() {
                           alert("Please provide your name and phone number to send your custom schedule inquiry.");
                         }
                       }}
-                      className="bg-primary hover:bg-primary-hover text-white font-extrabold px-6 py-3 rounded-lg text-xs uppercase tracking-wider cursor-pointer shadow-md transition-all duration-200 shrink-0"
+                      className="w-full sm:w-auto bg-primary hover:bg-primary-hover text-white font-extrabold px-6 py-4.5 md:py-3 rounded-lg text-base md:text-xs uppercase tracking-wider cursor-pointer shadow-md transition-all duration-200 shrink-0"
                     >
                       Lock in Discount
                     </button>

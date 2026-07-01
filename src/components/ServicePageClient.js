@@ -112,7 +112,7 @@ export default function ServicePageClient({ service, location, seoService, seoLo
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                   <div>
-                    <label className="block text-xs font-bold uppercase tracking-wider text-gray-500 mb-1.5">
+                    <label className="block text-sm sm:text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">
                       Full Name *
                     </label>
                     <input
@@ -121,12 +121,12 @@ export default function ServicePageClient({ service, location, seoService, seoLo
                       value={name}
                       onChange={(e) => setName(e.target.value)}
                       placeholder="John Doe"
-                      className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all"
+                      className="w-full px-5 py-4 md:px-4 md:py-3 rounded-lg border border-gray-200 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all text-base md:text-sm"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-xs font-bold uppercase tracking-wider text-gray-500 mb-1.5">
+                    <label className="block text-sm sm:text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">
                       Phone Number *
                     </label>
                     <input
@@ -135,14 +135,14 @@ export default function ServicePageClient({ service, location, seoService, seoLo
                       value={phone}
                       onChange={(e) => setPhone(e.target.value)}
                       placeholder="07123 456789"
-                      className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all"
+                      className="w-full px-5 py-4 md:px-4 md:py-3 rounded-lg border border-gray-200 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all text-base md:text-sm"
                     />
                   </div>
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                   <div>
-                    <label className="block text-xs font-bold uppercase tracking-wider text-gray-500 mb-1.5">
+                    <label className="block text-sm sm:text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">
                       Email Address *
                     </label>
                     <input
@@ -151,20 +151,20 @@ export default function ServicePageClient({ service, location, seoService, seoLo
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       placeholder="john@example.com"
-                      className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all"
+                      className="w-full px-5 py-4 md:px-4 md:py-3 rounded-lg border border-gray-200 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all text-base md:text-sm"
                     />
                   </div>
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-xs font-bold uppercase tracking-wider text-gray-500 mb-1.5">
+                      <label className="block text-sm sm:text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">
                         Essex Location *
                       </label>
                       <select
                         required
                         value={town}
                         onChange={(e) => setTown(e.target.value)}
-                        className="w-full px-3 py-3 rounded-lg border border-gray-200 focus:outline-none focus:border-primary bg-white transition-all text-sm"
+                        className="w-full px-4 py-4 md:px-3 md:py-3 rounded-lg border border-gray-200 focus:outline-none focus:border-primary bg-white transition-all text-base md:text-sm"
                       >
                         <option value="">-- Choose --</option>
                         {ESSEX_TOWNS.map((t) => (
@@ -176,13 +176,13 @@ export default function ServicePageClient({ service, location, seoService, seoLo
                     </div>
 
                     <div>
-                      <label className="block text-xs font-bold uppercase tracking-wider text-gray-500 mb-1.5">
+                      <label className="block text-sm sm:text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">
                         Cleaning Interval
                       </label>
                       <select
                         value={schedule}
                         onChange={(e) => setSchedule(e.target.value)}
-                        className="w-full px-3 py-3 rounded-lg border border-gray-200 focus:outline-none focus:border-primary bg-white transition-all text-sm font-semibold text-primary"
+                        className="w-full px-4 py-4 md:px-3 md:py-3 rounded-lg border border-gray-200 focus:outline-none focus:border-primary bg-white transition-all text-base md:text-sm font-semibold text-primary"
                       >
                         <option value="one-off">One-off clean</option>
                         <option value="6-months">6-Month Cycle (Save 15%)</option>
@@ -193,7 +193,7 @@ export default function ServicePageClient({ service, location, seoService, seoLo
                 </div>
 
                 <div>
-                  <label className="block text-xs font-bold uppercase tracking-wider text-gray-500 mb-1.5">
+                  <label className="block text-sm sm:text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">
                     Job Details / Notes (Optional)
                   </label>
                   <textarea
@@ -201,14 +201,14 @@ export default function ServicePageClient({ service, location, seoService, seoLo
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
                     placeholder="Provide details about your property (e.g. 3-bedroom detached house, number of gutters, double-glazing window count...)"
-                    className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all"
+                    className="w-full px-5 py-4 md:px-4 md:py-3 rounded-lg border border-gray-200 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all text-base md:text-sm"
                   ></textarea>
                 </div>
 
                 <div className="pt-2 text-center">
                   <button
                     type="submit"
-                    className="bg-primary hover:bg-primary-hover text-white font-extrabold px-12 py-4 rounded-xl shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-300 w-full sm:w-auto cursor-pointer"
+                    className="bg-primary hover:bg-primary-hover text-white font-extrabold px-12 py-5 md:py-4 rounded-xl shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-300 w-full sm:w-auto cursor-pointer text-base md:text-sm uppercase tracking-wider"
                   >
                     Submit Booking Request
                   </button>

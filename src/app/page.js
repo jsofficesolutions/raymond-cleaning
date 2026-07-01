@@ -43,7 +43,7 @@ export default function Home() {
   return (
     <div className="relative bg-white overflow-hidden">
       {/* 1. Hero Section */}
-      <section className="relative bg-primary text-white pt-24 pb-44 overflow-hidden">
+      <section className="relative bg-primary text-white pt-8 md:pt-24 pb-32 md:pb-44 overflow-hidden">
         {/* Background Image with Dark Overlay */}
         <div className="absolute inset-0 z-0">
           <Image
@@ -59,41 +59,41 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             {/* Left Column: Value Proposition & Inline Conversion Widget */}
-            <div className="lg:col-span-7 space-y-8 text-left">
+            <div className="lg:col-span-7 space-y-4 md:space-y-8 text-left">
               
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight leading-none">
                 <span className="text-white">Professional Exterior</span> <br className="hidden sm:inline" />
                 <span className="text-accent">Cleaning Services Essex</span>
               </h1>
-              <div className="w-16 h-0.5 bg-accent mt-4"></div>
+              <div className="w-20 h-1.5 bg-accent mt-4 rounded-full"></div>
 
-              <p className="text-lg md:text-xl text-gray-100 leading-snug max-w-2xl font-semibold mt-6">
+              <p className="hidden md:block text-lg md:text-xl text-gray-100 leading-snug max-w-2xl font-semibold mt-6">
                 Essex's premier specialists for residential and commercial window cleaning, gutter clearance, pressure washing, soft washing, and roofline maintenance. Serving Chelmsford, Southend, Colchester, Basildon, and surrounding areas.
               </p>
 
-              {/* Pimlico-Style Inline Horizontal Conversion Widget Bar */}
-              <div className="bg-white rounded-sm shadow-lg p-2.5 flex flex-col lg:flex-row items-stretch lg:items-center gap-2.5 max-w-3xl w-full border border-white/10">
+              {/* Pimlico-Style Inline Horizontal Conversion Widget Bar (Rounded Corners on Mobile) */}
+              <div className="bg-white rounded-xl shadow-lg p-4 sm:p-5 lg:p-2.5 flex flex-col lg:flex-row items-stretch lg:items-center gap-3 lg:gap-2.5 max-w-3xl w-full border border-white/10">
                 
                 {/* Dropdown Selector */}
-                <div className="flex items-center gap-2.5 px-4 py-3 flex-grow w-full lg:w-auto relative bg-slate-50 rounded-sm">
-                  <svg className="w-5 h-5 text-slate-500 flex-shrink-0" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+                <div className="flex items-center gap-3 px-5 py-4 lg:px-4 lg:py-3 flex-grow w-full lg:w-auto relative bg-slate-50 rounded-lg">
+                  <svg className="w-6 h-6 lg:w-5 lg:h-5 text-slate-500 flex-shrink-0" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                   </svg>
                   <div className="relative flex-grow">
                     <select
                       value={service}
                       onChange={(e) => setService(e.target.value)}
-                      className="w-full bg-transparent focus:outline-none text-slate-900 font-bold text-sm cursor-pointer appearance-none pr-8 py-1.5"
+                      className="w-full bg-transparent focus:outline-none text-slate-900 font-bold text-base lg:text-sm cursor-pointer appearance-none pr-8 py-1.5"
                     >
-                      <option value="" className="text-slate-900 font-bold">I need help with...</option>
+                      <option value="" className="text-slate-900 font-bold text-base lg:text-sm">I need help with...</option>
                       {services.map((s) => (
-                        <option key={s.id} value={s.title} className="text-slate-900">
+                        <option key={s.id} value={s.title} className="text-slate-900 text-base lg:text-sm">
                           {s.title}
                         </option>
                       ))}
                     </select>
                     <div className="absolute inset-y-0 right-0 flex items-center pr-1 pointer-events-none text-slate-500">
-                      <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                      <svg className="w-5 h-5 lg:w-4 lg:h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
                       </svg>
                     </div>
@@ -101,8 +101,8 @@ export default function Home() {
                 </div>
 
                 {/* Postcode Input */}
-                <div className="flex items-center gap-2.5 px-4 py-3 flex-grow w-full lg:w-auto bg-slate-50 rounded-sm">
-                  <svg className="w-5 h-5 text-slate-500 flex-shrink-0" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+                <div className="flex items-center gap-3 px-5 py-4 lg:px-4 lg:py-3 flex-grow w-full lg:w-auto bg-slate-50 rounded-lg">
+                  <svg className="w-6 h-6 lg:w-5 lg:h-5 text-slate-500 flex-shrink-0" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                     <path strokeLinecap="round" strokeLinejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                   </svg>
@@ -111,7 +111,7 @@ export default function Home() {
                     placeholder="Enter postcode"
                     value={postcode}
                     onChange={(e) => setPostcode(e.target.value.toUpperCase())}
-                    className="w-full bg-transparent focus:outline-none text-slate-900 font-bold text-sm uppercase placeholder:normal-case placeholder-slate-800 py-1.5"
+                    className="w-full bg-transparent focus:outline-none text-slate-900 font-bold text-base lg:text-sm uppercase placeholder:normal-case placeholder-slate-800 py-1.5"
                   />
                 </div>
 
@@ -119,7 +119,7 @@ export default function Home() {
                 <div className="w-full lg:w-auto flex-shrink-0">
                   <button
                     onClick={() => setIsModalOpen(true)}
-                    className="w-full flex items-center justify-center bg-accent hover:bg-accent-hover text-primary font-black px-8 py-3.5 rounded-sm transition-all duration-200 text-sm uppercase tracking-wider cursor-pointer"
+                    className="w-full flex items-center justify-center bg-accent hover:bg-accent-hover text-primary font-black px-8 py-4.5 lg:py-3.5 rounded-lg transition-all duration-200 text-base lg:text-sm uppercase tracking-wider cursor-pointer"
                   >
                     BOOK NOW
                   </button>
@@ -128,7 +128,7 @@ export default function Home() {
               </div>
 
               {/* Google Reviews Badge Framework */}
-              <div className="flex flex-wrap items-center gap-3 mt-8">
+              <div className="flex flex-wrap items-center gap-3 mt-8 md:mt-10 pb-6 md:pb-0">
                 <div className="flex items-center gap-1.5 bg-white/95 px-2.5 py-1 rounded-sm shadow-sm">
                   <svg className="w-3.5 h-3.5 flex-shrink-0" viewBox="0 0 24 24">
                     <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" />
@@ -434,7 +434,7 @@ export default function Home() {
                 ✓ Thanks! Aaron will contact you at {phone} within 24 hours.
               </div>
             ) : (
-              <form onSubmit={handleContactSubmit} className="space-y-4">
+              <form onSubmit={handleContactSubmit} className="space-y-5">
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                   <input
                     type="text"
@@ -442,7 +442,7 @@ export default function Home() {
                     placeholder="Your Name"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
-                    className="w-full px-4 py-3 rounded-lg border border-gray-200 text-sm focus:outline-none focus:border-primary"
+                    className="w-full px-5 py-4 md:px-4 md:py-3 rounded-lg border border-gray-200 text-base md:text-sm focus:outline-none focus:border-primary"
                   />
                   <input
                     type="email"
@@ -450,7 +450,7 @@ export default function Home() {
                     placeholder="Your Email Address"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    className="w-full px-4 py-3 rounded-lg border border-gray-200 text-sm focus:outline-none focus:border-primary"
+                    className="w-full px-5 py-4 md:px-4 md:py-3 rounded-lg border border-gray-200 text-base md:text-sm focus:outline-none focus:border-primary"
                   />
                   <input
                     type="tel"
@@ -458,7 +458,7 @@ export default function Home() {
                     placeholder="Your Phone Number"
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}
-                    className="w-full px-4 py-3 rounded-lg border border-gray-200 text-sm focus:outline-none focus:border-primary"
+                    className="w-full px-5 py-4 md:px-4 md:py-3 rounded-lg border border-gray-200 text-base md:text-sm focus:outline-none focus:border-primary"
                   />
                 </div>
                 <textarea
@@ -466,12 +466,12 @@ export default function Home() {
                   placeholder="How can we help you? (e.g. multi-service discount, special building requirements)"
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
-                  className="w-full px-4 py-3 rounded-lg border border-gray-200 text-sm focus:outline-none focus:border-primary"
+                  className="w-full px-5 py-4 md:px-4 md:py-3 rounded-lg border border-gray-200 text-base md:text-sm focus:outline-none focus:border-primary"
                 ></textarea>
                 <div className="text-center pt-2">
                   <button
                     type="submit"
-                    className="bg-primary hover:bg-primary-hover text-white font-extrabold px-10 py-3.5 rounded-lg text-xs uppercase tracking-wider cursor-pointer shadow-md transition-all duration-200"
+                    className="w-full md:w-auto bg-primary hover:bg-primary-hover text-white font-extrabold px-10 py-4.5 md:py-3.5 rounded-lg text-base md:text-xs uppercase tracking-wider cursor-pointer shadow-md transition-all duration-200"
                   >
                     Submit Inquiry
                   </button>

@@ -6,10 +6,29 @@ import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { services } from '@/data/services';
 
+const TRUST_ITEMS = [
+  { text: "Fully Insured", icon: (
+    <svg className="w-4 h-4 text-slate-950" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+      <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.57-.598-3.75h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
+    </svg>
+  )},
+  { text: "Pure Water System", icon: (
+    <svg className="w-4 h-4 text-slate-950" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+      <path strokeLinecap="round" strokeLinejoin="round" d="M12 2.25c-5.25 6-7.5 9-7.5 11.25a7.5 7.5 0 0015 0c0-2.25-2.25-5.25-7.5-11.25z" />
+    </svg>
+  )},
+  { text: "100% Satisfaction", icon: (
+    <svg className="w-4 h-4 text-slate-950" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+      <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.746 3.746 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.746 3.746 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z" />
+    </svg>
+  )}
+];
+
 export default function Header() {
   const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [currentTrustIndex, setCurrentTrustIndex] = useState(0);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -22,6 +41,21 @@ export default function Header() {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentTrustIndex((prev) => (prev + 1) % TRUST_ITEMS.length);
+    }, 4000);
+    return () => clearInterval(timer);
+  }, []);
+
+  const handlePrevTrust = () => {
+    setCurrentTrustIndex((prev) => (prev - 1 + TRUST_ITEMS.length) % TRUST_ITEMS.length);
+  };
+
+  const handleNextTrust = () => {
+    setCurrentTrustIndex((prev) => (prev + 1) % TRUST_ITEMS.length);
+  };
 
   return (
     <>
@@ -86,59 +120,78 @@ export default function Header() {
               </div>
             </div>
 
-            {/* Mobile Layout (< md) */}
-            <div className="flex md:hidden items-center justify-between w-full gap-2">
-              {/* Left: Hamburger button */}
-              <div className="flex-1 flex justify-start">
-                <button
-                  onClick={() => setIsMenuOpen(!isMenuOpen)}
-                  className="flex flex-col items-center justify-center w-11 h-11 border-2 border-primary text-primary hover:bg-primary hover:text-white transition-all duration-200 focus:outline-none cursor-pointer"
-                  aria-label="Toggle menu"
-                >
-                  {isMenuOpen ? (
-                    <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M18 6L6 18M6 6l12 12" />
-                    </svg>
-                  ) : (
-                    <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M4 5h16M4 12h16M4 19h16" />
-                    </svg>
-                  )}
-                </button>
-              </div>
-
-              {/* Center: Logo (larger & prominent) */}
-              <div className="flex-shrink-0 flex justify-center">
+            {/* Mobile Layout (< md) - Pimlico Style (Logo left, Hamburger right) */}
+            <div className="flex md:hidden items-center justify-between w-full gap-4">
+              {/* Left: Logo */}
+              <div className="flex-shrink-0 flex justify-start">
                 <Link 
                   href="/" 
                   className={`flex items-center relative transition-all duration-300 ${
-                    isScrolled ? 'h-16 w-32' : 'h-18 w-36'
+                    isScrolled ? 'h-14 w-28' : 'h-16 w-32'
                   }`}
                 >
                   <Image 
                     src="/images/logo.png" 
                     alt="Raymond Cleaning Services"
                     fill
-                    className="object-contain object-center animate-fade-in"
+                    className="object-contain object-left animate-fade-in"
                     priority
                   />
                 </Link>
               </div>
 
-              {/* Right: Phone CTA badge/button */}
-              <div className="flex-1 flex justify-end">
-                <a
-                  href="tel:07123456781"
-                  className="bg-accent hover:bg-accent-hover text-primary border-[3px] border-primary rounded-none w-11 h-11 flex items-center justify-center transition-all duration-200 cursor-pointer shadow-sm"
-                  aria-label="Call Us"
+              {/* Right: Hamburger button with MENU label */}
+              <div className="flex justify-end">
+                <button
+                  onClick={() => setIsMenuOpen(!isMenuOpen)}
+                  className="flex flex-col items-center justify-center p-2 focus:outline-none cursor-pointer text-primary hover:text-accent transition-colors"
+                  aria-label="Toggle menu"
                 >
-                  <svg className="w-5 h-5 fill-current text-primary flex-shrink-0" viewBox="0 0 20 20">
-                    <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
-                  </svg>
-                </a>
+                  <span className="text-[10px] font-black tracking-widest uppercase mb-1 leading-none text-accent">MENU</span>
+                  <div className="space-y-1.5 w-8 flex flex-col items-center">
+                    <span className={`block h-[3px] w-full bg-current rounded-full transition-transform duration-300 origin-center ${isMenuOpen ? 'rotate-45 translate-y-[9px]' : ''}`} />
+                    <span className={`block h-[3px] w-full bg-current rounded-full transition-opacity duration-200 ${isMenuOpen ? 'opacity-0' : ''}`} />
+                    <span className={`block h-[3px] w-full bg-current rounded-full transition-transform duration-300 origin-center ${isMenuOpen ? '-rotate-45 -translate-y-[9px]' : ''}`} />
+                  </div>
+                </button>
               </div>
             </div>
 
+          </div>
+        </div>
+
+        {/* Tier 2.5: Mobile Trust Carousel (visible only on mobile, below Tier 1) */}
+        <div className="md:hidden w-full bg-accent border-t border-slate-100/50 py-2.5 px-4 shadow-sm animate-in slide-in-from-top-2 duration-200">
+          <div className="flex items-center justify-between max-w-sm mx-auto">
+            {/* Left Chevron */}
+            <button 
+              onClick={handlePrevTrust}
+              className="text-slate-950 hover:text-slate-700 p-1 flex items-center justify-center cursor-pointer select-none"
+              aria-label="Previous trust item"
+            >
+              <svg className="w-5 h-5 stroke-current stroke-[2.5]" fill="none" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+              </svg>
+            </button>
+
+            {/* Carousel Item Content */}
+            <div className="flex items-center justify-center gap-2 text-xs font-black tracking-wider text-slate-950 uppercase select-none transition-all duration-300">
+              <div className="p-0.5 rounded bg-black/10 text-slate-950">
+                {TRUST_ITEMS[currentTrustIndex].icon}
+              </div>
+              <span>{TRUST_ITEMS[currentTrustIndex].text}</span>
+            </div>
+
+            {/* Right Chevron */}
+            <button 
+              onClick={handleNextTrust}
+              className="text-slate-950 hover:text-slate-700 p-1 flex items-center justify-center cursor-pointer select-none"
+              aria-label="Next trust item"
+            >
+              <svg className="w-5 h-5 stroke-current stroke-[2.5]" fill="none" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+              </svg>
+            </button>
           </div>
         </div>
 
@@ -222,24 +275,24 @@ export default function Header() {
         />
         
         {/* Drawer Content */}
-        <div className={`absolute top-0 left-0 w-80 max-w-[85vw] h-full bg-white shadow-2xl p-6 flex flex-col justify-between transition-transform duration-300 ease-out ${isMenuOpen ? 'translate-x-0' : '-translate-x-full'}`}>
+        <div className={`absolute top-0 right-0 w-80 max-w-[85vw] h-full bg-white shadow-2xl p-6 flex flex-col justify-between transition-transform duration-300 ease-out ${isMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}>
           <div>
             <div className="flex items-center justify-between pb-5 border-b border-slate-100">
-              <span className="font-black text-primary uppercase tracking-wider text-sm">Services Menu</span>
+              <span className="font-black text-primary uppercase tracking-wider text-base">Services Menu</span>
               <button 
                 onClick={() => setIsMenuOpen(false)} 
-                className="text-slate-500 hover:text-slate-950 p-1 text-2xl font-bold cursor-pointer transition-colors"
+                className="text-slate-500 hover:text-slate-950 p-2 text-3xl font-bold cursor-pointer transition-colors"
                 aria-label="Close menu"
               >
                 ✕
               </button>
             </div>
             
-            <nav className="mt-8 flex flex-col gap-2">
+            <nav className="mt-8 flex flex-col gap-3">
               <Link
                 href="/"
                 onClick={() => setIsMenuOpen(false)}
-                className={`font-black text-base uppercase tracking-wider py-3.5 px-2 border-b border-slate-50 flex items-center justify-between transition-colors ${
+                className={`font-black text-lg uppercase tracking-wider py-4.5 px-2 border-b border-slate-100 flex items-center justify-between transition-colors ${
                   pathname === '/' ? 'text-primary bg-slate-50' : 'text-slate-800 hover:text-primary'
                 }`}
               >
@@ -247,8 +300,8 @@ export default function Header() {
                 <span className="text-accent">→</span>
               </Link>
               
-              <div className="mt-4 pt-2 border-t border-slate-100">
-                <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest block mb-2 px-2">Our Cleaning Services</span>
+              <div className="mt-6 pt-4 border-t border-slate-100">
+                <span className="text-xs font-black text-slate-400 uppercase tracking-widest block mb-3 px-2">Our Cleaning Services</span>
                 {services.map((service) => {
                   const isActive = pathname === `/${service.slug}`;
                   return (
@@ -256,7 +309,7 @@ export default function Header() {
                       key={service.id}
                       href={`/${service.slug}`}
                       onClick={() => setIsMenuOpen(false)}
-                      className={`font-black text-sm uppercase tracking-wider py-3 px-2 border-b border-slate-50/50 flex items-center justify-between transition-colors ${
+                      className={`font-black text-base uppercase tracking-wider py-4 px-2 border-b border-slate-100 flex items-center justify-between transition-colors ${
                         isActive ? 'text-primary bg-slate-50' : 'text-slate-700 hover:text-primary'
                       }`}
                     >
@@ -272,7 +325,7 @@ export default function Header() {
           <div className="space-y-4 pt-6 border-t border-slate-100">
             <a 
               href="tel:07123456781" 
-              className="w-full bg-accent hover:bg-accent-hover text-primary text-center font-black py-3.5 block shadow transition-colors"
+              className="w-full bg-accent hover:bg-accent-hover text-primary text-center font-black py-5 text-lg block shadow transition-colors"
             >
               Call Us: 07123 456781
             </a>
@@ -281,7 +334,7 @@ export default function Header() {
       </div>
 
       {/* Non-collapsing spacer to prevent layout shifts when the header contracts */}
-      <div className="h-[96px] md:h-[254px] w-full flex-shrink-0" />
+      <div className="h-[120px] md:h-[254px] w-full flex-shrink-0" />
     </>
   );
 }
