@@ -65,7 +65,7 @@ export default function Home() {
                 <span className="text-white">Professional Exterior</span> <br className="hidden sm:inline" />
                 <span className="text-accent">Cleaning Services Essex</span>
               </h1>
-              <div className="w-16 h-0.5 bg-red-600 mt-4"></div>
+              <div className="w-16 h-0.5 bg-accent mt-4"></div>
 
               <p className="text-lg md:text-xl text-gray-100 leading-snug max-w-2xl font-semibold mt-6">
                 Essex's premier specialists for residential and commercial window cleaning, gutter clearance, pressure washing, soft washing, and roofline maintenance. Serving Chelmsford, Southend, Colchester, Basildon, and surrounding areas.
@@ -119,7 +119,7 @@ export default function Home() {
                 <div className="w-full lg:w-auto flex-shrink-0">
                   <button
                     onClick={() => setIsModalOpen(true)}
-                    className="w-full flex items-center justify-center bg-red-600 hover:bg-red-700 text-white font-extrabold px-8 py-3.5 rounded-sm transition-all duration-200 text-sm uppercase tracking-wider cursor-pointer"
+                    className="w-full flex items-center justify-center bg-accent hover:bg-accent-hover text-primary font-black px-8 py-3.5 rounded-sm transition-all duration-200 text-sm uppercase tracking-wider cursor-pointer"
                   >
                     BOOK NOW
                   </button>
