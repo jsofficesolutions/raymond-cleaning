@@ -1,6 +1,9 @@
 import { services } from '@/data/services';
 import { locations } from '@/data/locations';
 
+export const dynamic = 'force-static';
+
+
 export default function sitemap() {
   const baseUrl = 'https://raymondcleaning.co.uk';
 
