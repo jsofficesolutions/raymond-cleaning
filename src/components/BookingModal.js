@@ -11,6 +11,8 @@ export default function BookingModal({ isOpen, onClose, initialService, initialP
   const [service, setService] = useState('');
   const [details, setDetails] = useState('');
   const [formSubmitted, setFormSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState('');
 
   // Synchronize state when the modal opens with initial values from the hero widget
   useEffect(() => {
@@ -18,18 +20,48 @@ export default function BookingModal({ isOpen, onClose, initialService, initialP
       setService(initialService || '');
       setPostcode(initialPostcode || '');
       setFormSubmitted(false); // Reset form state
+      setIsSubmitting(false);
+      setError('');
     }
   }, [isOpen, initialService, initialPostcode]);
 
   if (!isOpen) return null;
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!name || !phone || !email || !service || !postcode) {
       alert("Please fill in all required fields.");
       return;
     }
-    setFormSubmitted(true);
+    setIsSubmitting(true);
+    setError('');
+    try {
+      const response = await fetch('/api/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          type: 'booking',
+          name,
+          phone,
+          email,
+          postcode,
+          service,
+          details,
+        }),
+      });
+      const result = await response.json();
+      if (response.ok) {
+        setFormSubmitted(true);
+      } else {
+        setError(result.error || "Failed to send booking request. Please try again or call us.");
+      }
+    } catch (err) {
+      setError("A connection error occurred. Please try again or call us directly.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -233,13 +265,20 @@ export default function BookingModal({ isOpen, onClose, initialService, initialP
                     <span className="underline cursor-pointer hover:text-primary transition-colors">Privacy Policy</span>.
                   </p>
 
+                  {error && (
+                    <div className="bg-red-50 border border-red-200 text-red-800 p-4 rounded-xl text-center font-semibold text-sm w-full">
+                      ⚠️ {error}
+                    </div>
+                  )}
+
                   {/* Submit Button (Full-width on mobile) */}
                   <div className="flex justify-start pt-1 w-full">
                     <button
                       type="submit"
-                      className="w-full md:w-auto bg-primary hover:bg-primary-hover text-white font-black px-8 py-5 md:py-3.5 rounded-xl uppercase tracking-wider text-base md:text-xs cursor-pointer shadow-md transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg"
+                      disabled={isSubmitting}
+                      className="w-full md:w-auto bg-primary hover:bg-primary-hover text-white font-black px-8 py-5 md:py-3.5 rounded-xl uppercase tracking-wider text-base md:text-xs cursor-pointer shadow-md transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
                     >
-                      Send Booking Request
+                      {isSubmitting ? "Sending Request..." : "Send Booking Request"}
                     </button>
                   </div>
 

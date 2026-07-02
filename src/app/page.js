@@ -30,14 +30,42 @@ export default function Home() {
   const [phone, setPhone] = useState('');
   const [message, setMessage] = useState('');
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState('');
 
-  const handleContactSubmit = (e) => {
+  const handleContactSubmit = async (e) => {
     e.preventDefault();
     if (!name || !email || !phone) {
       alert("Please fill in name, email, and phone number.");
       return;
     }
-    setSubmitted(true);
+    setIsSubmitting(true);
+    setError('');
+    try {
+      const response = await fetch('/api/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          type: 'contact',
+          name,
+          email,
+          phone,
+          message,
+        }),
+      });
+      const result = await response.json();
+      if (response.ok) {
+        setSubmitted(true);
+      } else {
+        setError(result.error || "Failed to submit. Please try again or call Aaron directly.");
+      }
+    } catch (err) {
+      setError("A connection error occurred. Please try again or call Aaron directly.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -468,12 +496,18 @@ export default function Home() {
                   onChange={(e) => setMessage(e.target.value)}
                   className="w-full px-5 py-4 md:px-4 md:py-3 rounded-lg border border-gray-200 text-base md:text-sm focus:outline-none focus:border-primary"
                 ></textarea>
+                {error && (
+                  <div className="bg-red-50 border border-red-200 text-red-800 p-4 rounded-xl text-center font-semibold text-sm">
+                    ⚠️ {error}
+                  </div>
+                )}
                 <div className="text-center pt-2">
                   <button
                     type="submit"
-                    className="w-full md:w-auto bg-primary hover:bg-primary-hover text-white font-extrabold px-10 py-4.5 md:py-3.5 rounded-lg text-base md:text-xs uppercase tracking-wider cursor-pointer shadow-md transition-all duration-200"
+                    disabled={isSubmitting}
+                    className="w-full md:w-auto bg-primary hover:bg-primary-hover text-white font-extrabold px-10 py-4.5 md:py-3.5 rounded-lg text-base md:text-xs uppercase tracking-wider cursor-pointer shadow-md transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
                   >
-                    Submit Inquiry
+                    {isSubmitting ? "Submitting..." : "Submit Inquiry"}
                   </button>
                 </div>
               </form>
