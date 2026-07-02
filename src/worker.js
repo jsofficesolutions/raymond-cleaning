@@ -171,8 +171,13 @@ export default {
         if (!resendResponse.ok) {
           const errorData = await resendResponse.text();
           console.error("Resend API failed response:", errorData);
+          let parsedError = errorData;
+          try {
+            const jsonErr = JSON.parse(errorData);
+            parsedError = jsonErr.message || errorData;
+          } catch(e) {}
           return new Response(
-            JSON.stringify({ error: "Failed to dispatch email notification." }),
+            JSON.stringify({ error: `Resend API Error: ${parsedError}` }),
             {
               status: 502,
               headers: { ...corsHeaders, "Content-Type": "application/json" }
