@@ -28,7 +28,7 @@ export default function LocationsPage() {
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center space-y-4">
-          <span className="bg-accent/20 text-accent font-extrabold px-4 py-1.5 rounded-full text-xs uppercase tracking-widest border border-accent/30">
+          <span className="inline-block bg-accent/20 text-accent font-extrabold px-4 py-1.5 rounded-full text-xs uppercase tracking-widest border border-accent/30">
             Coverage Area
           </span>
           <h1 className="text-4xl md:text-5xl font-black tracking-tight leading-none">
