@@ -18,14 +18,45 @@ export default function ServicePageClient({ service, location, seoService, seoLo
   const [schedule, setSchedule] = useState('6-months');
   const [message, setMessage] = useState('');
   const [formSubmitted, setFormSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState('');
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!name || !email || !phone || !town) {
       alert("Please fill in all required fields.");
       return;
     }
-    setFormSubmitted(true);
+    setIsSubmitting(true);
+    setError('');
+    try {
+      const response = await fetch('/api/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          type: 'service-quote',
+          name,
+          email,
+          phone,
+          town,
+          service,
+          schedule,
+          message,
+        }),
+      });
+      const result = await response.json();
+      if (response.ok) {
+        setFormSubmitted(true);
+      } else {
+        setError(result.error || "Failed to submit quote request. Please try again or call us.");
+      }
+    } catch (err) {
+      setError("A connection error occurred. Please try again or call Aaron directly.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -205,12 +236,19 @@ export default function ServicePageClient({ service, location, seoService, seoLo
                   ></textarea>
                 </div>
 
+                {error && (
+                  <div className="bg-red-50 border border-red-200 text-red-800 p-4 rounded-xl text-center font-semibold text-sm mb-4">
+                    ⚠️ {error}
+                  </div>
+                )}
+
                 <div className="pt-2 text-center">
                   <button
                     type="submit"
-                    className="bg-primary hover:bg-primary-hover text-white font-extrabold px-12 py-5 md:py-4 rounded-xl shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-300 w-full sm:w-auto cursor-pointer text-base md:text-sm uppercase tracking-wider"
+                    disabled={isSubmitting}
+                    className="bg-primary hover:bg-primary-hover text-white font-extrabold px-12 py-5 md:py-4 rounded-xl shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-300 w-full sm:w-auto cursor-pointer text-base md:text-sm uppercase tracking-wider disabled:opacity-50 disabled:cursor-not-allowed"
                   >
-                    Submit Booking Request
+                    {isSubmitting ? "Submitting..." : "Submit Booking Request"}
                   </button>
                   <p className="text-gray-400 text-xs mt-3">
                     No payment details required. We'll contact you to arrange a suitable site quote.
