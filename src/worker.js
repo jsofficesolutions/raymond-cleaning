@@ -11,7 +11,29 @@ export default {
       };
 
       try {
-        const data = await request.json();
+        let data;
+        try {
+          data = await request.json();
+        } catch (jsonErr) {
+          return new Response(
+            JSON.stringify({ error: "Invalid JSON body." }),
+            {
+              status: 400,
+              headers: { ...corsHeaders, "Content-Type": "application/json" }
+            }
+          );
+        }
+
+        if (!data || typeof data !== "object") {
+          return new Response(
+            JSON.stringify({ error: "Invalid request payload." }),
+            {
+              status: 400,
+              headers: { ...corsHeaders, "Content-Type": "application/json" }
+            }
+          );
+        }
+
         const {
           type,
           name,
@@ -39,17 +61,6 @@ export default {
         const toEmail = env.CONTACT_EMAIL || "info@raymondcleaning.co.uk";
         const fromEmail = env.FROM_EMAIL || "onboarding@resend.dev";
         const resendApiKey = env.RESEND_API_KEY;
-
-        if (!resendApiKey) {
-          console.error("RESEND_API_KEY is not defined in Cloudflare variables.");
-          return new Response(
-            JSON.stringify({ error: "Server Configuration Error: Email service not configured." }),
-            {
-              status: 500,
-              headers: { ...corsHeaders, "Content-Type": "application/json" }
-            }
-          );
-        }
 
         // Build email body based on submission type
         let subject = "";
@@ -151,6 +162,39 @@ export default {
               </div>
             </div>
           `;
+        }
+
+        if (!resendApiKey) {
+          console.warn("RESEND_API_KEY is not defined in Cloudflare variables.");
+          console.log("Mock Email Payload:", {
+            subject,
+            toEmail,
+            fromEmail,
+            replyTo: email,
+            htmlContent
+          });
+
+          const isLocal = url.hostname === "localhost" || url.hostname === "127.0.0.1";
+          if (isLocal) {
+            return new Response(
+              JSON.stringify({ 
+                success: true, 
+                warning: "Form submitted successfully in development mock mode (RESEND_API_KEY is not set)." 
+              }),
+              {
+                status: 200,
+                headers: { ...corsHeaders, "Content-Type": "application/json" }
+              }
+            );
+          }
+
+          return new Response(
+            JSON.stringify({ error: "Server Configuration Error: Email service not configured (missing RESEND_API_KEY)." }),
+            {
+              status: 500,
+              headers: { ...corsHeaders, "Content-Type": "application/json" }
+            }
+          );
         }
 
         const resendResponse = await fetch("https://api.resend.com/emails", {

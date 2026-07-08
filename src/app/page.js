@@ -108,7 +108,10 @@ export default function Home() {
                     <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                   </svg>
                   <div className="relative flex-grow">
+                    <label htmlFor="hero-service-select" className="sr-only">Choose a cleaning service</label>
                     <select
+                      id="hero-service-select"
+                      name="service"
                       value={service}
                       onChange={(e) => setService(e.target.value)}
                       className="w-full bg-transparent focus:outline-none text-slate-900 font-bold text-base lg:text-sm cursor-pointer appearance-none pr-8 py-1.5"
@@ -134,7 +137,10 @@ export default function Home() {
                     <path strokeLinecap="round" strokeLinejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                     <path strokeLinecap="round" strokeLinejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                   </svg>
+                  <label htmlFor="hero-postcode" className="sr-only">Enter postcode</label>
                   <input
+                    id="hero-postcode"
+                    name="postcode"
                     type="text"
                     placeholder="Enter postcode"
                     value={postcode}
@@ -464,38 +470,58 @@ export default function Home() {
             ) : (
               <form onSubmit={handleContactSubmit} className="space-y-5">
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                  <input
-                    type="text"
-                    required
-                    placeholder="Your Name"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                    className="w-full px-5 py-4 md:px-4 md:py-3 rounded-lg border border-gray-200 text-base md:text-sm focus:outline-none focus:border-primary"
-                  />
-                  <input
-                    type="email"
-                    required
-                    placeholder="Your Email Address"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    className="w-full px-5 py-4 md:px-4 md:py-3 rounded-lg border border-gray-200 text-base md:text-sm focus:outline-none focus:border-primary"
-                  />
-                  <input
-                    type="tel"
-                    required
-                    placeholder="Your Phone Number"
-                    value={phone}
-                    onChange={(e) => setPhone(e.target.value)}
-                    className="w-full px-5 py-4 md:px-4 md:py-3 rounded-lg border border-gray-200 text-base md:text-sm focus:outline-none focus:border-primary"
-                  />
+                  <div>
+                    <label htmlFor="contact-name" className="sr-only">Your Name</label>
+                    <input
+                      id="contact-name"
+                      name="name"
+                      type="text"
+                      required
+                      placeholder="Your Name"
+                      value={name}
+                      onChange={(e) => setName(e.target.value)}
+                      className="w-full px-5 py-4 md:px-4 md:py-3 rounded-lg border border-gray-200 text-base md:text-sm focus:outline-none focus:border-primary"
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="contact-email" className="sr-only">Your Email Address</label>
+                    <input
+                      id="contact-email"
+                      name="email"
+                      type="email"
+                      required
+                      placeholder="Your Email Address"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      className="w-full px-5 py-4 md:px-4 md:py-3 rounded-lg border border-gray-200 text-base md:text-sm focus:outline-none focus:border-primary"
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="contact-phone" className="sr-only">Your Phone Number</label>
+                    <input
+                      id="contact-phone"
+                      name="phone"
+                      type="tel"
+                      required
+                      placeholder="Your Phone Number"
+                      value={phone}
+                      onChange={(e) => setPhone(e.target.value)}
+                      className="w-full px-5 py-4 md:px-4 md:py-3 rounded-lg border border-gray-200 text-base md:text-sm focus:outline-none focus:border-primary"
+                    />
+                  </div>
                 </div>
-                <textarea
-                  rows="3"
-                  placeholder="How can we help you? (e.g. multi-service discount, special building requirements)"
-                  value={message}
-                  onChange={(e) => setMessage(e.target.value)}
-                  className="w-full px-5 py-4 md:px-4 md:py-3 rounded-lg border border-gray-200 text-base md:text-sm focus:outline-none focus:border-primary"
-                ></textarea>
+                <div>
+                  <label htmlFor="contact-message" className="sr-only">How can we help you?</label>
+                  <textarea
+                    id="contact-message"
+                    name="message"
+                    rows="3"
+                    placeholder="How can we help you? (e.g. multi-service discount, special building requirements)"
+                    value={message}
+                    onChange={(e) => setMessage(e.target.value)}
+                    className="w-full px-5 py-4 md:px-4 md:py-3 rounded-lg border border-gray-200 text-base md:text-sm focus:outline-none focus:border-primary"
+                  ></textarea>
+                </div>
                 {error && (
                   <div className="bg-red-50 border border-red-200 text-red-800 p-4 rounded-xl text-center font-semibold text-sm">
                     ⚠️ {error}

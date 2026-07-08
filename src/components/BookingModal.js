@@ -149,10 +149,12 @@ export default function BookingModal({ isOpen, onClose, initialService, initialP
                     
                     {/* Name Field */}
                     <div>
-                      <label className="block text-xs sm:text-sm font-extrabold uppercase tracking-wider text-blue-900 mb-2">
+                      <label htmlFor="booking-name" className="block text-xs sm:text-sm font-extrabold uppercase tracking-wider text-blue-900 mb-2">
                         Name *
                       </label>
                       <input
+                        id="booking-name"
+                        name="name"
                         type="text"
                         required
                         value={name}
@@ -164,7 +166,7 @@ export default function BookingModal({ isOpen, onClose, initialService, initialP
 
                     {/* Contact Number Field */}
                     <div>
-                      <label className="block text-xs sm:text-sm font-extrabold uppercase tracking-wider text-blue-900 mb-2">
+                      <label htmlFor="booking-phone" className="block text-xs sm:text-sm font-extrabold uppercase tracking-wider text-blue-900 mb-2">
                         Contact Number *
                       </label>
                       <div className="relative flex items-center bg-white border border-gray-200 rounded-xl shadow-sm focus-within:border-primary focus-within:ring-2 focus-within:ring-primary/10 transition-all overflow-hidden h-14 md:h-10">
@@ -175,6 +177,8 @@ export default function BookingModal({ isOpen, onClose, initialService, initialP
                           </svg>
                         </div>
                         <input
+                          id="booking-phone"
+                          name="phone"
                           type="tel"
                           required
                           value={phone}
@@ -187,10 +191,12 @@ export default function BookingModal({ isOpen, onClose, initialService, initialP
 
                     {/* Email Address Field */}
                     <div>
-                      <label className="block text-xs sm:text-sm font-extrabold uppercase tracking-wider text-blue-900 mb-2">
+                      <label htmlFor="booking-email" className="block text-xs sm:text-sm font-extrabold uppercase tracking-wider text-blue-900 mb-2">
                         Email Address *
                       </label>
                       <input
+                        id="booking-email"
+                        name="email"
                         type="email"
                         required
                         value={email}
@@ -202,10 +208,12 @@ export default function BookingModal({ isOpen, onClose, initialService, initialP
 
                     {/* Postcode Field */}
                     <div>
-                      <label className="block text-xs sm:text-sm font-extrabold uppercase tracking-wider text-blue-900 mb-2">
+                      <label htmlFor="booking-postcode" className="block text-xs sm:text-sm font-extrabold uppercase tracking-wider text-blue-900 mb-2">
                         Postcode
                       </label>
                       <input
+                        id="booking-postcode"
+                        name="postcode"
                         type="text"
                         required
                         value={postcode}
@@ -219,11 +227,13 @@ export default function BookingModal({ isOpen, onClose, initialService, initialP
 
                   {/* Service Select (Full Width) */}
                   <div>
-                    <label className="block text-xs sm:text-sm font-extrabold uppercase tracking-wider text-blue-900 mb-2">
+                    <label htmlFor="booking-service" className="block text-xs sm:text-sm font-extrabold uppercase tracking-wider text-blue-900 mb-2">
                       Service *
                     </label>
                     <div className="relative">
                       <select
+                        id="booking-service"
+                        name="service"
                         required
                         value={service}
                         onChange={(e) => setService(e.target.value)}
@@ -246,10 +256,12 @@ export default function BookingModal({ isOpen, onClose, initialService, initialP
 
                   {/* Issue Details (Full Width) */}
                   <div>
-                    <label className="block text-xs sm:text-sm font-extrabold uppercase tracking-wider text-blue-900 mb-2">
+                    <label htmlFor="booking-details" className="block text-xs sm:text-sm font-extrabold uppercase tracking-wider text-blue-900 mb-2">
                       Details about the issue you're having
                     </label>
                     <textarea
+                      id="booking-details"
+                      name="details"
                       value={details}
                       onChange={(e) => setDetails(e.target.value)}
                       placeholder="Describe the issue you are experiencing, when it happens, etc"

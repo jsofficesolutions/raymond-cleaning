@@ -143,10 +143,12 @@ export default function ServicePageClient({ service, location, seoService, seoLo
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                   <div>
-                    <label className="block text-sm sm:text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">
+                    <label htmlFor="service-quote-name" className="block text-sm sm:text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">
                       Full Name *
                     </label>
                     <input
+                      id="service-quote-name"
+                      name="name"
                       type="text"
                       required
                       value={name}
@@ -157,10 +159,12 @@ export default function ServicePageClient({ service, location, seoService, seoLo
                   </div>
 
                   <div>
-                    <label className="block text-sm sm:text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">
+                    <label htmlFor="service-quote-phone" className="block text-sm sm:text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">
                       Phone Number *
                     </label>
                     <input
+                      id="service-quote-phone"
+                      name="phone"
                       type="tel"
                       required
                       value={phone}
@@ -173,10 +177,12 @@ export default function ServicePageClient({ service, location, seoService, seoLo
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                   <div>
-                    <label className="block text-sm sm:text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">
+                    <label htmlFor="service-quote-email" className="block text-sm sm:text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">
                       Email Address *
                     </label>
                     <input
+                      id="service-quote-email"
+                      name="email"
                       type="email"
                       required
                       value={email}
@@ -188,10 +194,12 @@ export default function ServicePageClient({ service, location, seoService, seoLo
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-sm sm:text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">
+                      <label htmlFor="service-quote-town" className="block text-sm sm:text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">
                         Essex Location *
                       </label>
                       <select
+                        id="service-quote-town"
+                        name="town"
                         required
                         value={town}
                         onChange={(e) => setTown(e.target.value)}
@@ -207,10 +215,12 @@ export default function ServicePageClient({ service, location, seoService, seoLo
                     </div>
 
                     <div>
-                      <label className="block text-sm sm:text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">
+                      <label htmlFor="service-quote-schedule" className="block text-sm sm:text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">
                         Cleaning Interval
                       </label>
                       <select
+                        id="service-quote-schedule"
+                        name="schedule"
                         value={schedule}
                         onChange={(e) => setSchedule(e.target.value)}
                         className="w-full px-4 py-4 md:px-3 md:py-3 rounded-lg border border-gray-200 focus:outline-none focus:border-primary bg-white transition-all text-base md:text-sm font-semibold text-primary"
@@ -224,10 +234,12 @@ export default function ServicePageClient({ service, location, seoService, seoLo
                 </div>
 
                 <div>
-                  <label className="block text-sm sm:text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">
+                  <label htmlFor="service-quote-message" className="block text-sm sm:text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">
                     Job Details / Notes (Optional)
                   </label>
                   <textarea
+                    id="service-quote-message"
+                    name="message"
                     rows="3"
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}

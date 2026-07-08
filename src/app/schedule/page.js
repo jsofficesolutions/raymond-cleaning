@@ -379,21 +379,31 @@ export default function Schedule() {
                     ✓ Custom schedule inquiry sent! Aaron will contact you shortly to confirm dates.
                   </div>
                 ) : (
-                  <div className="flex flex-col sm:flex-row gap-4 sm:gap-3">
-                    <input
-                      type="text"
-                      placeholder="Your Name"
-                      value={plannerName}
-                      onChange={(e) => setPlannerName(e.target.value)}
-                      className="flex-grow px-5 py-4.5 md:px-4 md:py-3 rounded-lg border border-gray-200 text-base md:text-sm focus:outline-none focus:border-primary"
-                    />
-                    <input
-                      type="tel"
-                      placeholder="Your Phone Number"
-                      value={plannerPhone}
-                      onChange={(e) => setPlannerPhone(e.target.value)}
-                      className="flex-grow px-5 py-4.5 md:px-4 md:py-3 rounded-lg border border-gray-200 text-base md:text-sm focus:outline-none focus:border-primary"
-                    />
+                  <div className="flex flex-col sm:flex-row gap-4 sm:gap-3 w-full">
+                    <div className="flex-grow">
+                      <label htmlFor="planner-name" className="sr-only">Your Name</label>
+                      <input
+                        id="planner-name"
+                        name="plannerName"
+                        type="text"
+                        placeholder="Your Name"
+                        value={plannerName}
+                        onChange={(e) => setPlannerName(e.target.value)}
+                        className="w-full px-5 py-4.5 md:px-4 md:py-3 rounded-lg border border-gray-200 text-base md:text-sm focus:outline-none focus:border-primary"
+                      />
+                    </div>
+                    <div className="flex-grow">
+                      <label htmlFor="planner-phone" className="sr-only">Your Phone Number</label>
+                      <input
+                        id="planner-phone"
+                        name="plannerPhone"
+                        type="tel"
+                        placeholder="Your Phone Number"
+                        value={plannerPhone}
+                        onChange={(e) => setPlannerPhone(e.target.value)}
+                        className="w-full px-5 py-4.5 md:px-4 md:py-3 rounded-lg border border-gray-200 text-base md:text-sm focus:outline-none focus:border-primary"
+                      />
+                    </div>
                     <button
                       onClick={() => {
                         if (plannerName && plannerPhone) {
