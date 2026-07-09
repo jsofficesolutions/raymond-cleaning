@@ -1,6 +1,6 @@
 {
   "private": true,
   "scripts": {
-    "pages:build": "mkdir -p out && cp index.html out/index.html"
+    "pages:build": "mkdir -p out/images && cp index.html out/index.html && cp -r public/images/* out/images/"
   }
 }
