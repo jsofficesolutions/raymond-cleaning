@@ -1,6 +1,6 @@
 {
   "private": true,
   "scripts": {
-    "pages:build": "mkdir -p .vercel/output/static && cp index.html .vercel/output/static/index.html"
+    "pages:build": "mkdir -p out && cp index.html out/index.html"
   }
 }
