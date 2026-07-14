@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import Image from 'next/image';
 import { services } from '@/data/services';
 
 export default function BookingModal({ isOpen, onClose, initialService, initialPostcode }) {
@@ -82,7 +83,16 @@ export default function BookingModal({ isOpen, onClose, initialService, initialP
           <div className="grid grid-cols-1 md:grid-cols-12">
             
             {/* Left Column: Direct-Call Header Block */}
-            <div className="md:col-span-5 bg-primary text-white text-center py-8 px-6 md:p-8 flex flex-col justify-center items-center relative">
+            <div className="md:col-span-5 bg-primary text-white text-center py-8 px-6 md:py-14 md:px-8 flex flex-col justify-start items-center relative">
+              <div className="relative w-56 h-28 sm:w-64 sm:h-32 mb-3 sm:mb-8">
+                <Image
+                  src="/images/logo.png"
+                  alt="Raymond Cleaning Services Logo"
+                  fill
+                  className="object-contain"
+                  priority
+                />
+              </div>
               <h3 className="text-2xl sm:text-3xl md:text-xl lg:text-2xl font-extrabold uppercase tracking-wide">
                 Make a Booking
               </h3>
@@ -98,7 +108,7 @@ export default function BookingModal({ isOpen, onClose, initialService, initialP
               </a>
 
               {/* Trust Badges */}
-              <div className="hidden md:flex flex-col mt-8 space-y-3.5 text-left w-full max-w-[200px]">
+              <div className="hidden md:flex flex-col mt-8 space-y-3.5 items-center w-full">
                 <div className="flex items-center gap-2.5 text-xs font-bold text-blue-100">
                   <span className="text-accent text-sm font-extrabold">✓</span> Fast Scheduling
                 </div>
@@ -254,17 +264,17 @@ export default function BookingModal({ isOpen, onClose, initialService, initialP
                     </div>
                   </div>
 
-                  {/* Issue Details (Full Width) */}
+                   {/* Issue Details (Full Width) */}
                   <div>
                     <label htmlFor="booking-details" className="block text-xs sm:text-sm font-extrabold uppercase tracking-wider text-blue-900 mb-2">
-                      Details about the issue you're having
+                      Details on the service you require
                     </label>
                     <textarea
                       id="booking-details"
                       name="details"
                       value={details}
                       onChange={(e) => setDetails(e.target.value)}
-                      placeholder="Describe the issue you are experiencing, when it happens, etc"
+                      placeholder="Describe the service you require, any specific details, etc"
                       className="w-full px-4 md:px-3.5 py-3 md:py-2 rounded-xl border border-gray-200 bg-white focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/10 transition-all text-base md:text-xs text-slate-800 placeholder:text-sm md:placeholder:text-xs placeholder-gray-400 shadow-sm min-h-[100px] md:min-h-[60px] max-h-[150px] md:max-h-[100px] resize-y"
                     />
                   </div>
