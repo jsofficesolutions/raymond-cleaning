@@ -189,7 +189,7 @@ export default function Home() {
             <div className="hidden lg:block lg:col-span-5 relative h-[380px] w-full self-center">
               <div className="absolute inset-0 rounded-2xl overflow-hidden border-4 border-accent shadow-2xl">
                 <Image
-                  src="/images/about-me.webp"
+                  src="/images/window-clean-shenfield.webp"
                   alt="Aaron Raymond - Professional Exterior Cleaning Specialist"
                   fill
                   className="object-cover"
@@ -256,6 +256,7 @@ export default function Home() {
                             src={service.image}
                             alt={service.title}
                             fill
+                            style={{ objectPosition: service.objectPosition || 'center' }}
                             className="object-cover group-hover:scale-110 transition-transform duration-700"
                           />
                         </div>

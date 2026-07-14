@@ -5,7 +5,8 @@ export const services = [
     slug: "window-cleaning",
     desc: "Commercial and Residential window cleaning covering the South East.",
     longDesc: "At Raymond Cleaning Services, we specialize in high-quality window cleaning for both residential and commercial properties throughout Essex. Using the latest pure-water-fed pole systems, we clean not just the glass, but also the sills and frames for a complete, long-lasting finish. No ladders are required, keeping your property safe and private while reaching heights of up to 50 feet.",
-    image: "/images/window-cleaning.webp",
+    image: "/images/window-cleaning-bicknacre.webp",
+    objectPosition: "65% center",
     iconInnerHtml: '<path d="M12 3v18"/><path d="M3 12h18"/><rect x="3" y="3" width="18" height="18" rx="2"/>', // Lucide grid-2x2
     benefits: [
       "100% pure water filtration leaves windows streak-free without chemical residue",
@@ -25,7 +26,7 @@ export const services = [
     slug: "gutter-clearance",
     desc: "Routine maintenance to avoid overflowing gutters and unwanted vermin.",
     longDesc: "Blocked gutters can lead to serious water damage, damp issues, and costly roof repairs. Raymond Cleaning Services provides safe, high-reach gutter clearance services. Using powerful industrial gutter vacuums with carbon-fiber poles and onboard cameras, we clear out all moss, leaves, silt, and debris safely from the ground and show you the clean result.",
-    image: "/images/gutter-clearance.webp",
+    image: "/images/gutter-clearance-billericay.webp",
     iconInnerHtml: '<path d="M4 8v6a8 8 0 0 0 16 0V8"/><path d="M12 2v10"/><path d="m9 9 3 3 3-3"/>', // Custom gutter & downpipe suction arrow
     benefits: [
       "Prevents structural dampness and water ingress around your roofline",

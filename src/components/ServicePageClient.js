@@ -68,6 +68,7 @@ export default function ServicePageClient({ service, location, seoService, seoLo
             src={service.image}
             alt={service.title}
             fill
+            style={{ objectPosition: service.objectPosition || 'center' }}
             className="object-cover opacity-25"
             priority
           />

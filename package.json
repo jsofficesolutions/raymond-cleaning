@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev --webpack",
     "build": "next build",
     "pages:build": "npx @cloudflare/next-on-pages && touch .vercel/output/static/.assetsignore",
     "start": "next start",
