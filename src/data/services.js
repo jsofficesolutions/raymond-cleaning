@@ -27,6 +27,9 @@ export const services = [
     desc: "Routine maintenance to avoid overflowing gutters and unwanted vermin.",
     longDesc: "Blocked gutters can lead to serious water damage, damp issues, and costly roof repairs. Raymond Cleaning Services provides safe, high-reach gutter clearance services. Using powerful industrial gutter vacuums with carbon-fiber poles and onboard cameras, we clear out all moss, leaves, silt, and debris safely from the ground and show you the clean result.",
     image: "/images/gutter-clearance-billericay.webp",
+    imageHeight: "h-[500px] sm:h-[640px]",
+    borderRadius: "30% 70% 50% 50% / 30% 30% 70% 70%",
+    objectPosition: "center 5%",
     iconInnerHtml: '<path d="M4 8v6a8 8 0 0 0 16 0V8"/><path d="M12 2v10"/><path d="m9 9 3 3 3-3"/>', // Custom gutter & downpipe suction arrow
     benefits: [
       "Prevents structural dampness and water ingress around your roofline",

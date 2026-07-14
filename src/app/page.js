@@ -249,8 +249,8 @@ export default function Home() {
                       {/* Image block (Asymmetric Frame applied using custom border radiuses) */}
                       <div className={`lg:col-span-6 ${isEven ? 'lg:order-1' : 'lg:order-2'}`}>
                         <div 
-                          className="relative h-[300px] sm:h-[400px] w-full overflow-hidden shadow-2xl border-4 border-white/10 group transition-all duration-500"
-                          style={{ borderRadius: isEven ? '30% 70% 70% 30% / 30% 30% 70% 70%' : '70% 30% 30% 70% / 60% 40% 60% 40%' }}
+                          className={`relative w-full overflow-hidden shadow-2xl border-4 border-white/10 group transition-all duration-500 ${service.imageHeight || 'h-[300px] sm:h-[400px]'}`}
+                          style={{ borderRadius: service.borderRadius || (isEven ? '30% 70% 70% 30% / 30% 30% 70% 70%' : '70% 30% 30% 70% / 60% 40% 60% 40%') }}
                         >
                           <Image
                             src={service.image}
